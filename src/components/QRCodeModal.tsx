@@ -15,14 +15,16 @@ export default function QRCodeModal({ onClose }: QRCodeModalProps) {
   useEffect(() => {
     const currentUrl = window.location.href;
     setTargetUrl(currentUrl);
-    QRCode.toCanvas(
-      canvasRef.current,
-      currentUrl,
-      { width: 320, margin: 2, color: { dark: '#065f46', light: '#ffffff' } },
-      (err) => {
-        if (err) console.error(err);
-      },
-    );
+    if (canvasRef.current) {
+      QRCode.toCanvas(
+        canvasRef.current,
+        currentUrl,
+        { width: 320, margin: 2, color: { dark: '#065f46', light: '#ffffff' } },
+        (err) => {
+          if (err) console.error(err);
+        },
+      );
+    }
     QRCode.toDataURL(currentUrl, {
       width: 480,
       margin: 2,
