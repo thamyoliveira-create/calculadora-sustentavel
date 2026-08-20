@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 transition-all hover:bg-emerald-700 hover:shadow-emerald-700/30 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-500 transition-all hover:bg-slate-100 hover:text-slate-700;
+  }
+
+  .card {
+    @apply rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8;
+  }
+
+  .choice-option {
+    @apply flex w-full items-center gap-4 rounded-2xl border-2 border-slate-100 bg-white px-5 py-4 text-left text-base text-slate-700 transition-all hover:border-emerald-300 hover:bg-emerald-50/40;
+  }
+
+  .choice-option-selected {
+    @apply border-emerald-500 bg-emerald-50 text-emerald-900;
+  }
+}
+
+/* Custom range slider — emerald themed */
+input[type='range'].eco-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  outline: none;
+}
+input[type='range'].eco-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #059669;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+input[type='range'].eco-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+input[type='range'].eco-range::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #059669;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.4);
+  cursor: pointer;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes grow-width {
+  from {
+    width: 0%;
+  }
+}
+.animate-grow-width {
+  animation: grow-width 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
