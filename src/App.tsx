@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import StartScreen from './components/StartScreen';
 import QuizScreen from './components/QuizScreen';
 import ResultsScreen from './components/ResultsScreen';
@@ -9,8 +9,38 @@ import { submitParticipant } from './lib/fairData';
 type Screen = 'start' | 'quiz' | 'results' | 'fair';
 
 function App() {
-  const [screen, setScreen] = useState<Screen>('start');
-  const [answers, setAnswers] = useState<Answers>({});
+  const [screen, setScreen] = useState<Screen>(() => {
+    try {
+      const saved = localStorage.getItem('eco_quiz_screen');
+      if (saved && ['start', 'quiz', 'results', 'fair'].includes(saved)) {
+        return saved as Screen;
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+    return 'start';
+  });
+
+  const [answers, setAnswers] = useState<Answers>(() => {
+    try {
+      const saved = localStorage.getItem('eco_quiz_answers');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('eco_quiz_answers', JSON.stringify(answers));
+      localStorage.setItem('eco_quiz_screen', screen);
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, [answers, screen]);
 
   function handleAnswer(questionId: number, value: number | string) {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
@@ -22,13 +52,19 @@ function App() {
     try {
       await submitParticipant(answers, result);
     } catch (e) {
-      console.error('Falha ao registrar resultado anônimo:', e);
+      console.warn('Falha ao registrar resultado anônimo:', e);
     }
     setScreen('results');
   }
 
   function handleRestart() {
     // Erase only this participant's answers; collective fair data persists in Supabase.
+    try {
+      localStorage.removeItem('eco_quiz_answers');
+      localStorage.removeItem('eco_quiz_screen');
+    } catch {
+      // Ignore localStorage errors
+    }
     setAnswers({});
     setScreen('start');
   }
@@ -72,3 +108,4 @@ function App() {
 }
 
 export default App;
+

@@ -40,6 +40,10 @@ export interface CalculationResult {
   fiveYearSavingsDefault: number;
   /** Estimated km traveled per month (km/day * 22). */
   monthlyKm: number;
+  /** Estimated annual CO2 savings in kg. */
+  annualCo2Kg: number;
+  /** Equivalent trees planted/saved per year. */
+  treesEquivalent: number;
 }
 
 export type Classification =
@@ -142,6 +146,14 @@ export function calculate(answers: Answers): CalculationResult {
   const annualSavingsDefault = energySavings10 + supermarketSavings5;
   const fiveYearSavingsDefault = annualSavingsDefault * 5;
 
+  // Environmental impact estimation
+  // ~0.10 kg CO2 per BRL saved in energy + ~0.15 kg CO2 per BRL saved in food waste prevention
+  const annualCo2Kg = Math.round(
+    energySavings10 * 0.1 + supermarketSavings5 * 0.15,
+  );
+  // ~15 kg CO2 absorbed per tree per year
+  const treesEquivalent = Math.max(1, Math.round(annualCo2Kg / 15));
+
   // Q9 — km/day
   const kmPerDay = typeof answers[9] === 'number' ? answers[9] : 0;
   const monthlyKm = kmPerDay * 22;
@@ -158,6 +170,8 @@ export function calculate(answers: Answers): CalculationResult {
     annualSavingsDefault,
     fiveYearSavingsDefault,
     monthlyKm,
+    annualCo2Kg,
+    treesEquivalent,
   };
 }
 
@@ -198,6 +212,8 @@ export function simulate(
   fiveYearSavings: number;
   annualEnergyReduced: number;
   annualSupermarketReduced: number;
+  annualCo2Saved: number;
+  treesSaved: number;
 } {
   const { energyMonthly, supermarketMonthly } = monthlyValues(answers);
   const annualEnergy = energyMonthly * 12;
@@ -205,12 +221,20 @@ export function simulate(
   const energySavings = annualEnergy * (energyReductionPct / 100);
   const supermarketSavings = annualSupermarket * (supermarketReductionPct / 100);
   const annualSavings = energySavings + supermarketSavings;
+
+  const annualCo2Saved = Math.round(
+    energySavings * 0.1 + supermarketSavings * 0.15,
+  );
+  const treesSaved = Math.max(1, Math.round(annualCo2Saved / 15));
+
   return {
     monthlySavings: annualSavings / 12,
     annualSavings,
     fiveYearSavings: annualSavings * 5,
     annualEnergyReduced: annualEnergy - energySavings,
     annualSupermarketReduced: annualSupermarket - supermarketSavings,
+    annualCo2Saved,
+    treesSaved,
   };
 }
 
@@ -244,3 +268,64 @@ export function recommendations(answers: Answers, count = 3): string[] {
 
   return ranked.slice(0, count).map((r) => RECOMMENDATION_BY_QUESTION[r.q.id]);
 }
+
+export interface ChallengeTask {
+  id: string;
+  day: number;
+  title: string;
+  description: string;
+  category: 'energia' | 'agua' | 'alimentacao' | 'consumo' | 'residuos';
+}
+
+export const SUSTAINABLE_CHALLENGE_TASKS: ChallengeTask[] = [
+  {
+    id: 'day-1',
+    day: 1,
+    title: 'Apague Aparelhos em Standby',
+    description: 'Desconecte da tomada carregadores e aparelhos com luz de standby antes de dormir.',
+    category: 'energia',
+  },
+  {
+    id: 'day-2',
+    day: 2,
+    title: 'Banho Consciente (5 minutos)',
+    description: 'Cronometre seu banho em até 5 minutos e feche o registro ao se ensaboar.',
+    category: 'agua',
+  },
+  {
+    id: 'day-3',
+    day: 3,
+    title: 'Dia do Prato Limpo',
+    description: 'Sirva apenas o que for consumir e aproveite as sobras do almoço no jantar.',
+    category: 'alimentacao',
+  },
+  {
+    id: 'day-4',
+    day: 4,
+    title: 'Separação Correta de Recicláveis',
+    description: 'Lave e separe pelo menos uma embalagem de plástico, papel ou metal para a coleta seletiva.',
+    category: 'residuos',
+  },
+  {
+    id: 'day-5',
+    day: 5,
+    title: 'Ecobag nas Compras',
+    description: 'Leve sua própria sacola reutilizável ou mochila ao sair para compras.',
+    category: 'consumo',
+  },
+  {
+    id: 'day-6',
+    day: 6,
+    title: 'Lista de Compras Planejada',
+    description: 'Olhe a despensa antes de comprar para evitar itens duplicados e compras impulsivas.',
+    category: 'alimentacao',
+  },
+  {
+    id: 'day-7',
+    day: 7,
+    title: 'Dia do Transporte Sustentável',
+    description: 'Faça um trajeto a pé, de bicicleta ou carona compartilhada em vez de ir sozinho de carro.',
+    category: 'energia',
+  },
+];
+
