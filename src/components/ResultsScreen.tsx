@@ -17,6 +17,7 @@ import {
   Circle,
   Trophy,
   Target,
+  Scale,
 } from 'lucide-react';
 import {
   Answers,
@@ -33,6 +34,7 @@ import {
 } from './Charts';
 import HowWeCalculateModal from './HowWeCalculateModal';
 import CorporateComparison from './CorporateComparison';
+import CriticalThinkingSection from './CriticalThinkingSection';
 import WorkHoursComparison from './WorkHoursComparison';
 import TaxComparison from './TaxComparison';
 import FairAverageComparison from './FairAverageComparison';
@@ -101,10 +103,11 @@ export default function ResultsScreen({
 
   const navItems = [
     { id: 'score', label: 'Perfil', icon: <Sparkles className="h-3.5 w-3.5" /> },
+    { id: 'sistema', label: 'Você vs. O Sistema', icon: <Scale className="h-3.5 w-3.5" /> },
     { id: 'impacto', label: 'Planeta', icon: <Leaf className="h-3.5 w-3.5" /> },
     { id: 'desafio', label: 'Desafio', icon: <Target className="h-3.5 w-3.5" /> },
     { id: 'recomendacoes', label: 'Dicas', icon: <Lightbulb className="h-3.5 w-3.5" /> },
-    { id: 'empresas', label: 'Empresas', icon: <Building2 className="h-3.5 w-3.5" /> },
+    { id: 'empresas', label: 'Indústrias', icon: <Building2 className="h-3.5 w-3.5" /> },
     { id: 'trabalho', label: 'Trabalho', icon: <Clock className="h-3.5 w-3.5" /> },
     { id: 'impostos', label: 'Impostos', icon: <Globe2 className="h-3.5 w-3.5" /> },
     { id: 'feira', label: 'Feira', icon: <Users className="h-3.5 w-3.5" /> },
@@ -210,6 +213,9 @@ export default function ResultsScreen({
             </p>
           </div>
         </div>
+
+        {/* CRITICAL THINKING & SYSTEM MODULE */}
+        <CriticalThinkingSection result={result} />
 
         {/* ECOLOGICAL IMPACT CARD */}
         <div id="section-impacto" className="card mt-6 scroll-mt-20 border-emerald-100 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Leaf, BarChart3, QrCode, Users, Zap, Droplets, Carrot, ShoppingBag, Recycle, Bike } from 'lucide-react';
+import { Leaf, BarChart3, QrCode, Sparkles, Zap, Droplets, Carrot, ShoppingBag, Recycle, Bike } from 'lucide-react';
 import QRCodeModal from './QRCodeModal';
 
 interface StartScreenProps {
@@ -20,13 +20,14 @@ export default function StartScreen({
       <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-teal-200/30 blur-3xl" />
 
       <div className="relative mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-16 text-center">
-        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30">
+        <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30">
           <Leaf className="h-10 w-10" strokeWidth={2} />
         </div>
 
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
-          Feira de Sustentabilidade
-        </p>
+        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-100 border border-emerald-200/80 px-3.5 py-1 text-xs font-bold text-emerald-800">
+          <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+          Ação Educativa: Consciência Crítica & Sustentabilidade
+        </div>
 
         <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1]">
           QUANTO CUSTA O SEU CONSUMO?
