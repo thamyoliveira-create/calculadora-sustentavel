@@ -51,90 +51,95 @@ export default function QuizScreen({
   const Icon = CATEGORY_ICONS[question.category];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50/60 via-white to-white">
-      <div className="mx-auto flex min-h-screen max-w-2xl flex-col px-5 py-8 sm:py-12">
+  return (
+    <div className="min-h-screen bg-[#FBF9F5] text-stone-900">
+      <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-between px-5 py-8 sm:py-12">
         {/* Header: category + progress */}
         <div className="mb-6">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-emerald-700">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100">
-                <Icon className="h-5 w-5" />
+          <div className="mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-[#1B4332]">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100/80 border border-emerald-200">
+                <Icon className="h-4 w-4 text-[#1B4332]" />
               </span>
-              <span className="text-sm font-semibold">
+              <span className="text-xs font-bold uppercase tracking-wider text-stone-700">
                 {CATEGORY_LABELS[question.category]}
               </span>
             </div>
-            <span className="text-sm font-medium text-slate-400">
-              {current + 1} / {TOTAL_QUESTIONS}
+            <span className="text-xs font-bold text-stone-500">
+              Etapa {current + 1} de {TOTAL_QUESTIONS}
             </span>
           </div>
 
           {/* Progress bar */}
-          <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-stone-200">
             <div
-              className="animate-grow-width h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-[width] duration-500 ease-out"
+              className="h-full rounded-full bg-[#1B4332] transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
         {/* Question card */}
-        <div key={question.id} className="animate-fade-in-up card flex-1">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-            Pergunta {question.id}
-          </p>
-          <h2 className="mt-2 text-balance text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
-            {question.prompt}
-          </h2>
+        <div key={question.id} className="animate-fade-in-up card flex-1 flex flex-col justify-between">
+          <div>
+            <span className="inline-block rounded-md bg-stone-100 px-2 py-0.5 text-[11px] font-bold text-stone-600 border border-stone-200">
+              Pergunta {question.id}
+            </span>
+            <h2 className="mt-3 text-balance text-xl font-bold leading-snug text-stone-900 sm:text-2xl">
+              {question.prompt}
+            </h2>
 
-          <div className="mt-8">
-            {question.type === 'numeric' ? (
-              <NumericInput
-                question={question}
-                value={answers[question.id] as number | undefined}
-                onChange={(v) => onAnswer(question.id, v)}
-              />
-            ) : (
-              <ChoiceInput
-                question={question}
-                value={answers[question.id] as string | undefined}
-                onChange={(v) => onAnswer(question.id, v)}
-              />
-            )}
+            <div className="mt-6">
+              {question.type === 'numeric' ? (
+                <NumericInput
+                  question={question}
+                  value={answers[question.id] as number | undefined}
+                  onChange={(v) => onAnswer(question.id, v)}
+                />
+              ) : (
+                <ChoiceInput
+                  question={question}
+                  value={answers[question.id] as string | undefined}
+                  onChange={(v) => onAnswer(question.id, v)}
+                />
+              )}
+            </div>
           </div>
         </div>
 
         {/* Navigation */}
-        <div className="mt-6 flex items-center justify-between gap-3">
-          <button onClick={prev} className="btn-secondary">
-            <ChevronLeft className="h-4 w-4" />
-            Anterior
-          </button>
+        <div className="mt-6">
+          <div className="flex items-center justify-between gap-3">
+            <button onClick={prev} className="btn-secondary">
+              <ChevronLeft className="h-4 w-4" />
+              Anterior
+            </button>
 
-          <button
-            onClick={next}
-            disabled={!isAnswered}
-            className="btn-primary"
-          >
-            {isLast ? (
-              <>
-                Ver resultado
-                <Check className="h-4 w-4" />
-              </>
-            ) : (
-              <>
-                Próxima
-                <ChevronRight className="h-4 w-4" />
-              </>
-            )}
-          </button>
+            <button
+              onClick={next}
+              disabled={!isAnswered}
+              className="btn-primary"
+            >
+              {isLast ? (
+                <>
+                  Ver meu Resultado
+                  <Check className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Próxima
+                  <ChevronRight className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </div>
+
+          {!isAnswered && (
+            <p className="mt-3 text-center text-xs text-stone-400">
+              Selecione uma resposta acima para avançar.
+            </p>
+          )}
         </div>
-
-        {!isAnswered && (
-          <p className="mt-4 text-center text-xs text-slate-400">
-            Selecione uma resposta para continuar.
-          </p>
-        )}
       </div>
     </div>
   );
@@ -159,7 +164,7 @@ function ChoiceInput({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2.5">
       {question.options?.map((opt) => {
         const selected = value === opt.label;
         return (
@@ -169,15 +174,15 @@ function ChoiceInput({
             className={`choice-option ${selected ? 'choice-option-selected' : ''}`}
           >
             <span
-              className={`flex h-6 w-6 flex-none items-center justify-center rounded-full border-2 transition ${
+              className={`flex h-5 w-5 flex-none items-center justify-center rounded-full border transition ${
                 selected
-                  ? 'border-emerald-500 bg-emerald-500 text-white'
-                  : 'border-slate-300 bg-white'
+                  ? 'border-[#1B4332] bg-[#1B4332] text-white'
+                  : 'border-stone-300 bg-white'
               }`}
             >
-              {selected && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+              {selected && <Check className="h-3 w-3" strokeWidth={3} />}
             </span>
-            <span className="font-medium">{opt.label}</span>
+            <span className="text-sm sm:text-base">{opt.label}</span>
           </button>
         );
       })}
@@ -214,10 +219,10 @@ function NumericInput({
           value={value ?? ''}
           onChange={(e) => onChange(clamp(parseInt(e.target.value, 10)))}
           placeholder="0"
-          className="w-40 rounded-2xl border-2 border-slate-100 bg-white px-5 py-4 text-center text-3xl font-bold text-slate-900 outline-none transition focus:border-emerald-500"
+          className="w-36 rounded-xl border-2 border-stone-200 bg-white px-4 py-3 text-center text-3xl font-black text-stone-900 outline-none transition focus:border-[#1B4332] focus:ring-2 focus:ring-[#1B4332]/10"
         />
         {question.unit && (
-          <span className="pb-4 text-base font-medium text-slate-500">
+          <span className="pb-3 text-sm font-bold text-stone-500">
             {question.unit}
           </span>
         )}
@@ -228,16 +233,16 @@ function NumericInput({
         <div className="flex items-center gap-3">
           <button
             onClick={() => onChange(clamp((value ?? min) - 1))}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl font-bold text-slate-600 transition hover:bg-slate-200"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-stone-100 text-lg font-bold text-stone-700 transition hover:bg-stone-200 active:scale-95"
           >
             −
           </button>
-          <span className="min-w-[3ch] text-center text-2xl font-bold text-emerald-700">
+          <span className="min-w-[3ch] text-center text-2xl font-black text-[#1B4332]">
             {value ?? '–'}
           </span>
           <button
             onClick={() => onChange(clamp((value ?? min) + 1))}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl font-bold text-slate-600 transition hover:bg-slate-200"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-stone-100 text-lg font-bold text-stone-700 transition hover:bg-stone-200 active:scale-95"
           >
             +
           </button>

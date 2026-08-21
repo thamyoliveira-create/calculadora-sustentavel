@@ -75,23 +75,23 @@ export default function WorkHoursComparison({
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setUseCustomWage(false)}
-            className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+            className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
               !useCustomWage
-                ? 'bg-emerald-600 text-white'
-                : 'bg-white text-slate-600 border border-slate-200'
+                ? 'bg-[#1B4332] text-white shadow-xs'
+                : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-50'
             }`}
           >
             Salário mínimo ({formatBRL(MIN_WAGE_MONTHLY)})
           </button>
           <button
             onClick={() => setUseCustomWage(true)}
-            className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+            className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
               useCustomWage
-                ? 'bg-emerald-600 text-white'
-                : 'bg-white text-slate-600 border border-slate-200'
+                ? 'bg-[#1B4332] text-white shadow-xs'
+                : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-50'
             }`}
           >
-            Informar minha renda
+            Informar outra renda
           </button>
         </div>
         {useCustomWage && (

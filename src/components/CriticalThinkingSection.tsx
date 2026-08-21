@@ -9,11 +9,10 @@ import {
   Scale,
   Hourglass,
   MessageSquareQuote,
-  TrendingUp,
   Sparkles,
-  ChevronRight,
-  HelpCircle,
   ShieldAlert,
+  HelpCircle,
+  TrendingDown,
 } from "lucide-react";
 import { CalculationResult } from "@/lib/calculations";
 import { formatNumber } from "@/lib/format";
@@ -30,7 +29,6 @@ interface IndustryDuelo {
   subtitle: string;
   icon: typeof Factory;
   tag: string;
-  color: string;
   corpStat: string;
   corpStatLabel: string;
   comparisonText: string;
@@ -44,41 +42,38 @@ const DUELO_DATA: IndustryDuelo[] = [
     subtitle: "Roupas descartáveis e tendências semanais",
     icon: Shirt,
     tag: "Moda Descartável",
-    color: "from-rose-500 to-orange-500",
     corpStat: "7.500 Litros",
-    corpStatLabel: "de água para fazer uma única calça jeans",
+    corpStatLabel: "de água para produzir 1 única calça jeans",
     comparisonText:
-      "A água necessária para produzir 1 calça jeans equivale a tudo o que um estudante bebe em 7 a 10 anos inteiros de vida.",
+      "A água gasta para produzir uma calça jeans equivale a tudo o que um estudante bebe em 7 a 10 anos inteiros de vida.",
     realityCheck:
-      "A indústria da moda descartável queima ou descarta em aterros o equivalente a 1 caminhão de lixo cheio de roupas a cada segundo para manter os preços e o consumo artificialmente altos.",
+      "A indústria da moda descarta ou queima o equivalente a 1 caminhão de lixo cheio de roupas a cada segundo para manter a escassez e o consumo contínuo.",
   },
   {
     id: "petroleo",
     name: "Indústria Fóssil & Petroleiras",
-    subtitle: "Combustíveis, plásticos e energia não renovável",
+    subtitle: "Combustíveis, plásticos e energia fóssil",
     icon: Flame,
     tag: "71% das Emissões",
-    color: "from-amber-600 to-red-600",
     corpStat: "100 Empresas",
-    corpStatLabel: "geram mais de 71% de todos os gases estufa do planeta",
+    corpStatLabel: "são responsáveis por mais de 71% de todas as emissões globais",
     comparisonText:
-      "Mesmo se toda a sua escola passar a vida inteira andando a pé, as emissões de 100 multinacionais de combustíveis continuam ditando a crise climática global.",
+      "Mesmo se toda a sua escola passar a vida inteira andando a pé, as decisões de 100 multinacionais continuam ditando o ritmo do colapso climático.",
     realityCheck:
-      "Em 2004, a petroleira BP gastou mais de R$ 250 milhões em publicidade para popularizar o termo \"Pegada de Carbono Individual\", com o objetivo de desviar a atenção de suas próprias perfurações e transferir a culpa moral para o cidadão.",
+      "Em 2004, a petroleira BP investiu R$ 250 milhões para popularizar o conceito de \"pegada de carbono pessoal\", desviando a responsabilidade de suas perfurações para o cidadão.",
   },
   {
     id: "big-tech",
-    name: "Big Tech & Obsolescência Programada",
+    name: "Big Tech & Eletrônicos",
     subtitle: "Smartphones, baterias seladas e gadgets descartáveis",
     icon: Smartphone,
     tag: "Lixo Eletrônico",
-    color: "from-indigo-500 to-purple-500",
     corpStat: "62 Milhões",
-    corpStatLabel: "de toneladas de lixo eletrônico por ano no mundo",
+    corpStatLabel: "de toneladas de lixo eletrônico gerados por ano no mundo",
     comparisonText:
-      "Aparelhos são propositalmente desenhados para quebrar, ter peças coladas e ficarem lentos com atualizações após 2 ou 3 anos, forçando compras contínuas.",
+      "Aparelhos são propositalmente desenhados para quebrar e ficarem obsoletos em 2 ou 3 anos, forçando os consumidores a gastarem novamente.",
     realityCheck:
-      "Minérios raros como lítio e cobalto são extraídos em condições desumanas no Sul Global para alimentar o ciclo de lançamentos anuais de smartphones que mudam quase nada além da câmera.",
+      "Minérios raros como lítio e cobalto são extraídos em condições degradantes no Sul Global para alimentar lançamentos anuais com pouca inovação real.",
   },
   {
     id: "bebidas",
@@ -86,48 +81,47 @@ const DUELO_DATA: IndustryDuelo[] = [
     subtitle: "Refrigerantes, garrafas PET e privatização da água",
     icon: Droplets,
     tag: "Privatização Hídrica",
-    color: "from-cyan-500 to-blue-600",
     corpStat: "3 Milhões",
     corpStatLabel: "de litros de água extraídos por dia por uma única fábrica",
     comparisonText:
-      "Enquanto moradores locais enfrentam racionamento de água, uma única fábrica de refrigerante drena lençóis freáticos públicos para engarrafar água e açúcar em plástico descartável.",
+      "Enquanto populações locais enfrentam racionamento, multinacionais drenam lençóis freáticos públicos para engarrafar água com açúcar em plástico descartável.",
     realityCheck:
-      "Menos de 9% de todo o plástico já produzido na história da humanidade foi realmente reciclado. O restante polui rios, oceanos e a nossa própria cadeia alimentar na forma de microplásticos.",
+      "Menos de 9% de todo o plástico já produzido na história foi realmente reciclado. O restante polui rios, oceanos e a cadeia alimentar como microplásticos.",
   },
 ];
 
 const DEBATE_QUESTIONS = [
   {
     number: "01",
-    theme: "Economia vs. Ecologia",
+    theme: "Economia vs. Limites Físicos",
     question:
-      "Se vivemos em um planeta com recursos naturais finitos, é racional que as empresas e o sistema financeiro exijam crescimento e aumento de lucro infinito todo ano?",
+      "Se vivemos em um planeta com recursos naturais finitos, é racional que o sistema econômico exija crescimento e aumento de lucros todo ano?",
     context:
-      "Para debate: Como o conceito de \"crescimento econômico constante\" colide com a física e os limites biológicos da Terra?",
+      "Para debate em sala: Como o conceito de \"crescimento econômico perpétuo\" entra em conflito direto com as leis da física e da biologia?",
   },
   {
     number: "02",
     theme: "Desigualdade & Sustentabilidade",
     question:
-      "Por que produtos orgânicos, energia solar e carros elétricos são tratados como \"luxo\" acessível apenas para quem tem muito dinheiro?",
+      "Por que produtos ecológicos e alimentação saudável são caros e inacessíveis para quem ganha salário mínimo?",
     context:
-      "Para debate: Quem ganha salário mínimo tem liberdade de escolha para ser 100% sustentável ou o sistema empurra as pessoas mais pobres para o consumo mais poluente?",
+      "Para debate em sala: O consumo sustentável é uma escolha individual livre ou um privilégio econômico de quem tem mais renda?",
   },
   {
     number: "03",
     theme: "Justiça Climática",
     question:
-      "Quem mais lucra com a destruição ambiental (grandes acionistas e multinacionais) é quem mais sofre com a falta de água, poluição e enchentes?",
+      "Quem mais lucra com a destruição ambiental é quem mais sofre as consequências de enchentes, secas e ondas de calor?",
     context:
-      "Para debate: Por que as periferias e populações vulneráveis são as primeiras a sofrer as consequências dos desastres climáticos enquanto os bilionários constroem bunkers?",
+      "Para debate em sala: Por que as periferias e populações vulneráveis são as mais impactadas pelas tragédias climáticas?",
   },
   {
     number: "04",
-    theme: "Ação Individual vs. Coletiva",
+    theme: "Ação Individual vs. Política Coletiva",
     question:
-      "Se economizar água em casa é importante, por que as leis quase nunca punem severamente mineradoras e indústrias que destroem rios inteiros?",
+      "Se economizar água em casa é importante, por que as leis quase nunca punem severamente grandes crimes ambientais de corporações?",
     context:
-      "Para debate: O que transforma mais a sociedade: mudar hábitos individuais de consumo ou organizar a juventude para exigir leis rígidas e fiscalização das corporações?",
+      "Para debate em sala: O que transforma mais: mudanças de hábitos individuais ou organização social para cobrar leis e fiscalização?",
   },
 ];
 
@@ -140,82 +134,82 @@ export default function CriticalThinkingSection({ result }: Props) {
   const DueloIcon = currentDuelo.icon;
 
   return (
-    <section id="section-sistema" className="card mt-6 scroll-mt-20 border-sky-100 bg-gradient-to-b from-slate-900 to-slate-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl">
+    <section id="section-sistema" className="card mt-6 scroll-mt-20 border-2 border-stone-800 bg-stone-900 text-stone-100 p-6 sm:p-8 rounded-2xl shadow-sm">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/20 border border-sky-500/30 px-3 py-1 text-xs font-bold text-sky-300 w-fit">
-          <Sparkles className="h-3.5 w-3.5" />
-          Módulo de Pensamento Crítico para o Ensino Médio
+        <div className="inline-flex items-center gap-1.5 rounded-md bg-stone-800 border border-stone-700 px-2.5 py-1 text-[11px] font-bold text-amber-300 w-fit">
+          <Sparkles className="h-3 w-3" />
+          Dossiê Crítico • Para o Ensino Médio
         </div>
         <h2 className="text-2xl font-black tracking-tight sm:text-3xl text-white">
           O SISTEMA & NOSSOS RECURSOS
         </h2>
-        <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
-          Entenda como a lógica de lucro corporativo molda nossos hábitos de consumo,
-          por que os recursos naturais da Terra estão se esgotando e por que a culpa
-          não é só sua.
+        <p className="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed">
+          Compreenda como a lógica de lucro corporativo molda os hábitos de consumo,
+          por que os recursos naturais da Terra estão no limite e por que a culpa
+          da crise ecológica não é apenas do cidadão comum.
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="mt-6 flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+      <div className="mt-6 flex flex-wrap gap-2 border-b border-stone-800 pb-3">
         <button
           onClick={() => setActiveTab("duelo")}
-          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
             activeTab === "duelo"
-              ? "bg-sky-500 text-white shadow-md shadow-sky-500/30"
-              : "bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-white"
+              ? "bg-white text-stone-950 shadow-xs"
+              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
           }`}
         >
-          <Scale className="h-4 w-4" />
-          Duelo: Você vs. O Sistema
+          <Scale className="h-3.5 w-3.5" />
+          Duelo: Você vs. Indústria
         </button>
 
         <button
           onClick={() => setActiveTab("greenwashing")}
-          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
             activeTab === "greenwashing"
-              ? "bg-sky-500 text-white shadow-md shadow-sky-500/30"
-              : "bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-white"
+              ? "bg-white text-stone-950 shadow-xs"
+              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
           }`}
         >
-          <ShieldAlert className="h-4 w-4" />
+          <ShieldAlert className="h-3.5 w-3.5" />
           O Mito do Greenwashing
         </button>
 
         <button
           onClick={() => setActiveTab("recursos")}
-          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
             activeTab === "recursos"
-              ? "bg-sky-500 text-white shadow-md shadow-sky-500/30"
-              : "bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-white"
+              ? "bg-white text-stone-950 shadow-xs"
+              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
           }`}
         >
-          <Hourglass className="h-4 w-4" />
-          Planeta Finito & Esgotamento
+          <Hourglass className="h-3.5 w-3.5" />
+          Recursos Finitos
         </button>
 
         <button
           onClick={() => setActiveTab("debate")}
-          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
             activeTab === "debate"
-              ? "bg-sky-500 text-white shadow-md shadow-sky-500/30"
-              : "bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-white"
+              ? "bg-white text-stone-950 shadow-xs"
+              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
           }`}
         >
-          <MessageSquareQuote className="h-4 w-4" />
-          Debate em Sala de Aula
+          <MessageSquareQuote className="h-3.5 w-3.5" />
+          Perguntas para Debate
         </button>
       </div>
 
       {/* TAB 1: DUELO */}
       {activeTab === "duelo" && (
-        <div className="mt-6 space-y-6 animate-fade-in-up">
+        <div className="mt-5 space-y-5 animate-fade-in-up">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-sky-400">
-              Passo 1: Selecione um setor industrial
+            <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+              Escolha um setor para comparar a escala:
             </p>
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <div className="mt-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {DUELO_DATA.map((item) => {
                 const Icon = item.icon;
                 const isSelected = selectedDuelo === item.id;
@@ -223,18 +217,16 @@ export default function CriticalThinkingSection({ result }: Props) {
                   <button
                     key={item.id}
                     onClick={() => setSelectedDuelo(item.id)}
-                    className={`flex flex-col items-start gap-2 rounded-2xl border p-3 text-left transition ${
+                    className={`flex flex-col items-start gap-1.5 rounded-xl border p-2.5 text-left transition ${
                       isSelected
-                        ? "border-sky-400 bg-sky-950/60 shadow-lg ring-2 ring-sky-500/30"
-                        : "border-slate-800 bg-slate-900/50 hover:bg-slate-850 hover:border-slate-700 opacity-70 hover:opacity-100"
+                        ? "border-amber-400 bg-stone-800 ring-1 ring-amber-400 text-white"
+                        : "border-stone-800 bg-stone-950/60 text-stone-400 hover:border-stone-700 hover:text-white"
                     }`}
                   >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-800 text-sky-400">
-                      <Icon className="h-4 w-4" />
-                    </div>
+                    <Icon className={`h-4 w-4 ${isSelected ? "text-amber-300" : "text-stone-500"}`} />
                     <div>
-                      <p className="text-xs font-bold text-white line-clamp-1">{item.name}</p>
-                      <span className="text-[10px] text-sky-300 font-semibold">{item.tag}</span>
+                      <p className="text-xs font-bold line-clamp-1">{item.name}</p>
+                      <span className="text-[10px] text-stone-400 font-medium">{item.tag}</span>
                     </div>
                   </button>
                 );
@@ -243,58 +235,50 @@ export default function CriticalThinkingSection({ result }: Props) {
           </div>
 
           {/* Duelo Card */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4 sm:p-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
-                <DueloIcon className="h-6 w-6" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-800 text-amber-300 border border-stone-700">
+                <DueloIcon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-white">{currentDuelo.name}</h3>
-                <p className="text-xs text-slate-400">{currentDuelo.subtitle}</p>
+                <h3 className="text-base font-bold text-white">{currentDuelo.name}</h3>
+                <p className="text-xs text-stone-400">{currentDuelo.subtitle}</p>
               </div>
             </div>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-slate-950/80 border border-slate-800 p-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
-                    Sua Economia Pessoal Estimada
-                  </span>
-                  <span className="text-xs font-bold text-slate-400">1 ano</span>
-                </div>
-                <p className="mt-2 text-2xl font-black text-emerald-400">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl bg-stone-900 border border-stone-800 p-3.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+                  Sua Economia Individual (1 Ano)
+                </span>
+                <p className="mt-1 text-xl font-black text-emerald-400">
                   ~{formatNumber(result.annualCo2Kg)} kg de CO₂
                 </p>
-                <p className="mt-1 text-xs text-slate-400 leading-relaxed">
-                  Mesmo economizando energia, água e evitando compras impulsivas o ano todo...
+                <p className="mt-1 text-[11px] text-stone-400 leading-relaxed">
+                  Mesmo economizando energia, água e compras o ano inteiro...
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-slate-950/80 border border-rose-900/40 p-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-rose-400">
-                    Escala da Indústria
-                  </span>
-                  <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-[10px] font-bold text-rose-300">
-                    Impacto Brutal
-                  </span>
-                </div>
-                <p className="mt-2 text-2xl font-black text-rose-400">
+              <div className="rounded-xl bg-stone-900 border border-rose-900/60 p-3.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400">
+                  Escala da Indústria
+                </span>
+                <p className="mt-1 text-xl font-black text-rose-400">
                   {currentDuelo.corpStat}
                 </p>
-                <p className="mt-1 text-xs text-slate-400 leading-relaxed">
+                <p className="mt-1 text-[11px] text-stone-400 leading-relaxed">
                   {currentDuelo.corpStatLabel}
                 </p>
               </div>
             </div>
 
-            <div className="mt-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4 text-amber-200 text-xs sm:text-sm leading-relaxed">
-              <span className="font-bold text-amber-300">🔍 A Comparação Real: </span>
+            <div className="mt-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 p-3.5 text-xs text-amber-200 leading-relaxed">
+              <span className="font-bold text-amber-300">🔍 O Contraste Real: </span>
               {currentDuelo.comparisonText}
             </div>
 
-            <div className="mt-3 rounded-2xl bg-slate-950/60 p-4 text-xs text-slate-300 leading-relaxed border border-slate-800/80">
-              <span className="font-bold text-sky-300">⚠️ Por trás do Lucro: </span>
+            <div className="mt-2.5 rounded-xl bg-stone-900/80 p-3 text-xs text-stone-300 leading-relaxed border border-stone-800">
+              <span className="font-bold text-stone-200">⚠️ Por trás do Lucro: </span>
               {currentDuelo.realityCheck}
             </div>
           </div>
@@ -303,96 +287,91 @@ export default function CriticalThinkingSection({ result }: Props) {
 
       {/* TAB 2: GREENWASHING */}
       {activeTab === "greenwashing" && (
-        <div className="mt-6 space-y-4 animate-fade-in-up">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-amber-400" />
+        <div className="mt-5 space-y-3.5 animate-fade-in-up">
+          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-amber-400" />
               O que é Greenwashing? (A Maquiagem Verde)
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              É a estratégia de marketing usada por empresas para parecerem ecologicamente corretas,
-              enquanto suas práticas reais continuam devastando o meio ambiente e explorando trabalhadores.
+            <p className="mt-1.5 text-xs text-stone-300 leading-relaxed">
+              É a prática de marketing em que corporações gastam milhões promovendo uma imagem sustentável,
+              enquanto mantêm modelos de negócios predatórios e poluentes.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/20 text-amber-300 font-bold text-sm mb-3">
-                1
-              </div>
-              <h4 className="text-sm font-bold text-white">A Farsa da Pegada Individual</h4>
-              <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-                Você sabia que a expressão <span className="text-slate-200 font-semibold">\"sua pegada de carbono\"</span> foi criada por uma agência de publicidade contratada pela gigante petrolífera BP em 2004?
-                O objetivo era criar uma ilusão de que a crise climática é responsabilidade de cada indivíduo ao dirigir ou tomar banho, tirando o foco das petrolíferas que faturam bilhões poluindo.
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
+              <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                Fato Histórico 1
+              </span>
+              <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">A Invenção da \"Pegada Individual\"</h4>
+              <p className="mt-1.5 text-xs text-stone-400 leading-relaxed">
+                Em 2004, a petroleira BP contratou uma das maiores agências de publicidade do mundo para criar a primeira \"calculadora de pegada de carbono\".
+                A intenção declarada era transferir a responsabilidade moral da queima de combustíveis fósseis para a rotina de cada cidadão.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-500/20 text-rose-300 font-bold text-sm mb-3">
-                2
-              </div>
-              <h4 className="text-sm font-bold text-white">Obsolescência Programada</h4>
-              <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-                Empresas de tecnologia e eletrônicos intencionalmente produzem produtos com peças difíceis de consertar e baterias seladas.
-                Se um celular durasse 10 anos, os lucros trimestrais dos acionistas cairiam. O modelo capitalista exige que você descarte e compre outro para a roda do lucro continuar girando.
+            <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
+              <span className="rounded bg-rose-500/20 px-2 py-0.5 text-[10px] font-bold text-rose-300">
+                Fato Histórico 2
+              </span>
+              <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">Obsolescência Programada</h4>
+              <p className="mt-1.5 text-xs text-stone-400 leading-relaxed">
+                Desde o histórico \"Cartel Phoebus\" (que reduziu a vida útil das lâmpadas de 2.500 para 1.000 horas em 1924), indústrias projetam eletrônicos e roupas para estragarem rápido e garantirem vendas constantes.
               </p>
             </div>
-          </div>
-
-          <div className="rounded-2xl bg-gradient-to-r from-sky-900/40 to-indigo-900/40 border border-sky-500/20 p-4 text-xs sm:text-sm text-sky-200">
-            💡 <span className="font-bold">Conclusão Crítica:</span> Não deixe que as corporações façam você se sentir culpado sozinho. Nossas ações diárias são essenciais para criar consciência coletiva, mas a verdadeira transformação exige cobrar leis rígidas, taxação de lucros poluentes e o fim da impunidade corporativa.
           </div>
         </div>
       )}
 
       {/* TAB 3: RECURSOS FINITOS */}
       {activeTab === "recursos" && (
-        <div className="mt-6 space-y-5 animate-fade-in-up">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <div className="mt-5 space-y-4 animate-fade-in-up">
+          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4 sm:p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-rose-400">
-                Alerta Planetário
+              <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400">
+                Alerta Ecológico
               </span>
-              <span className="rounded-full bg-rose-500/20 px-2.5 py-0.5 text-xs font-bold text-rose-300">
-                Cheque Especial da Terra
+              <span className="rounded bg-rose-500/20 px-2 py-0.5 text-[10px] font-bold text-rose-300">
+                Sobrecarga da Terra
               </span>
             </div>
-            <h3 className="mt-2 text-xl font-black text-white">
+            <h3 className="mt-1 text-base sm:text-lg font-black text-white">
               O Dia da Sobrecarga da Terra (Earth Overshoot Day)
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Todos os anos, a humanidade consome em apenas <span className="text-white font-bold">7 a 8 meses</span> tudo o que o planeta consegue regenerar em 365 dias (água limpa, solos férteis, madeira, absorção de carbono).
+            <p className="mt-1 text-xs text-stone-300 leading-relaxed">
+              Todos os anos, a humanidade consome em apenas <span className="text-white font-bold">7 a 8 meses</span> tudo o que o planeta consegue regenerar em 365 dias.
             </p>
 
-            <div className="mt-4 rounded-xl bg-slate-950 p-4 border border-slate-800">
-              <div className="flex justify-between text-xs font-bold text-slate-300">
-                <span>Janeiro (Início)</span>
+            <div className="mt-3.5 rounded-lg bg-stone-900 p-3 border border-stone-800">
+              <div className="flex justify-between text-[11px] font-bold text-stone-300">
+                <span>Janeiro</span>
                 <span className="text-rose-400">Agosto (Recursos do ano esgotados)</span>
                 <span>Dezembro</span>
               </div>
-              <div className="mt-2 h-4 w-full overflow-hidden rounded-full bg-slate-800 flex">
-                <div className="h-full bg-emerald-500 w-[60%]" title="Recursos renováveis do ano" />
-                <div className="h-full bg-rose-500 w-[40%]" title="Déficit ecológico (esgotamento)" />
+              <div className="mt-1.5 h-3 w-full overflow-hidden rounded-full bg-stone-800 flex">
+                <div className="h-full bg-emerald-600 w-[60%]" title="Recursos regeneráveis" />
+                <div className="h-full bg-rose-600 w-[40%]" title="Cheque especial ecológico" />
               </div>
-              <div className="mt-2 flex justify-between text-[11px] text-slate-400">
-                <span className="text-emerald-400 font-semibold">● Recursos regeneráveis (60%)</span>
-                <span className="text-rose-400 font-semibold">● Destruição do futuro (40%)</span>
+              <div className="mt-1.5 flex justify-between text-[10px] text-stone-400">
+                <span className="text-emerald-400">● 60% Recursos regeneráveis</span>
+                <span className="text-rose-400">● 40% Déficit ecológico</span>
               </div>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl bg-slate-900/60 border border-slate-800 p-4 text-center">
-              <p className="text-2xl font-black text-rose-400">1.75 Planetas</p>
-              <p className="mt-1 text-xs text-slate-400">É o que a economia global consome por ano hoje. Mas só temos 1 planeta.</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
+              <p className="text-lg font-black text-rose-400">1.75 Planetas</p>
+              <p className="mt-0.5 text-[11px] text-stone-400">Consumo da economia global hoje. Mas só temos 1 planeta.</p>
             </div>
-            <div className="rounded-2xl bg-slate-900/60 border border-slate-800 p-4 text-center">
-              <p className="text-2xl font-black text-amber-400">10% Mais Ricos</p>
-              <p className="mt-1 text-xs text-slate-400">São responsáveis por quase 50% de todas as emissões de carbono do mundo.</p>
+            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
+              <p className="text-lg font-black text-amber-400">10% Mais Ricos</p>
+              <p className="mt-0.5 text-[11px] text-stone-400">Geram quase 50% de todas as emissões globais de carbono.</p>
             </div>
-            <div className="rounded-2xl bg-slate-900/60 border border-slate-800 p-4 text-center">
-              <p className="text-2xl font-black text-sky-400">Sul Global</p>
-              <p className="mt-1 text-xs text-slate-400">Países em desenvolvimento sofrem mais com a seca e o calor causados pelos países ricos.</p>
+            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
+              <p className="text-lg font-black text-sky-400">Sul Global</p>
+              <p className="mt-0.5 text-[11px] text-stone-400">Populações pobres sofrem mais com a seca e o calor extremos.</p>
             </div>
           </div>
         </div>
@@ -400,30 +379,30 @@ export default function CriticalThinkingSection({ result }: Props) {
 
       {/* TAB 4: DEBATE */}
       {activeTab === "debate" && (
-        <div className="mt-6 space-y-4 animate-fade-in-up">
-          <p className="text-xs text-slate-400">
-            Utilize estas 4 perguntas para promover uma roda de conversa na sala de aula ou no grupo de estudos:
+        <div className="mt-5 space-y-3 animate-fade-in-up">
+          <p className="text-xs text-stone-400">
+            Perguntas para promover uma reflexão crítica na sala de aula:
           </p>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {DEBATE_QUESTIONS.map((item) => (
               <div
                 key={item.number}
-                className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 sm:p-5 transition hover:border-sky-500/40"
+                className="rounded-xl border border-stone-800 bg-stone-950 p-3.5"
               >
                 <div className="flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-sky-500/20 text-sky-300 text-xs font-black">
+                  <span className="flex h-5 w-5 items-center justify-center rounded bg-stone-800 text-amber-300 text-[10px] font-black">
                     {item.number}
                   </span>
-                  <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400">
                     {item.theme}
                   </span>
                 </div>
-                <h4 className="mt-2 text-sm sm:text-base font-bold text-white leading-snug">
+                <h4 className="mt-1.5 text-xs sm:text-sm font-bold text-white leading-snug">
                   {item.question}
                 </h4>
-                <p className="mt-2 rounded-xl bg-slate-950/80 p-3 text-xs text-slate-400 leading-relaxed border border-slate-800/80">
-                  <span className="font-semibold text-slate-300">Ponto de partida: </span>
+                <p className="mt-1.5 rounded-lg bg-stone-900 p-2.5 text-[11px] text-stone-400 leading-relaxed border border-stone-800">
+                  <span className="font-semibold text-stone-300">Ponto de partida: </span>
                   {item.context}
                 </p>
               </div>

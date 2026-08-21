@@ -113,13 +113,12 @@ export default function CorporateComparison() {
         })}
       </div>
 
-      <div className="mt-5 rounded-2xl bg-gradient-to-br from-sky-600 to-emerald-600 p-5 text-white">
-        <p className="text-sm leading-relaxed">{CORPORATE_OVERALL_MESSAGE}</p>
+      <div className="mt-5 rounded-xl bg-stone-900 p-5 text-stone-100 border border-stone-800">
+        <p className="text-xs sm:text-sm leading-relaxed">{CORPORATE_OVERALL_MESSAGE}</p>
       </div>
 
-      <p className="mt-3 text-[11px] leading-relaxed text-slate-400">
-        Os valores são estimativas educativas para fins de comparação em feira
-        escolar e não representam dados exatos de uma empresa específica.
+      <p className="mt-3 text-[11px] leading-relaxed text-stone-400">
+        Nota educativa: Estes comparativos servem para contextualizar que, embora a ação individual seja importante, a regulação da grande indústria é indispensável.
       </p>
     </section>
   );

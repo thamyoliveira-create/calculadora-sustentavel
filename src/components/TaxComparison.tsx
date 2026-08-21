@@ -58,7 +58,7 @@ export default function TaxComparison() {
                       className="block h-full rounded-full transition-all duration-700"
                       style={{
                         width: `${widthPct}%`,
-                        backgroundColor: isBrazil ? '#059669' : '#94a3b8',
+                        backgroundColor: isBrazil ? '#1B4332' : '#A8A29E',
                       }}
                     />
                   </span>

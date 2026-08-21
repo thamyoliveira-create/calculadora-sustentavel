@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Leaf, BarChart3, QrCode, Sparkles, Zap, Droplets, Carrot, ShoppingBag, Recycle, Bike } from 'lucide-react';
+import { Leaf, BarChart3, QrCode, ArrowRight, Zap, Droplets, Carrot, ShoppingBag, Recycle, Bike, Clock, ShieldCheck, BookOpen } from 'lucide-react';
 import QRCodeModal from './QRCodeModal';
 
 interface StartScreenProps {
@@ -14,78 +14,118 @@ export default function StartScreen({
   const [qrOpen, setQrOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-white">
-      {/* Decorative blobs */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-emerald-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-teal-200/30 blur-3xl" />
+    <div className="min-h-screen bg-[#FBF9F5] text-stone-900 flex flex-col justify-between">
+      {/* Top Header Bar */}
+      <header className="border-b border-stone-200/80 bg-white/60 px-6 py-4">
+        <div className="mx-auto flex max-w-4xl items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B4332] text-white">
+              <Leaf className="h-4 w-4" />
+            </div>
+            <span className="text-sm font-black tracking-tight text-[#1B4332]">
+              CALCULADORA SUSTENTÁVEL
+            </span>
+          </div>
 
-      <div className="relative mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-16 text-center">
-        <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-xl shadow-emerald-600/30">
-          <Leaf className="h-10 w-10" strokeWidth={2} />
+          <div className="hidden items-center gap-2 sm:flex">
+            <span className="rounded-md bg-stone-100 px-2.5 py-1 text-[11px] font-bold text-stone-600 border border-stone-200">
+              Ação Educativa • Ensino Médio
+            </span>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-5 py-12 text-center">
+        {/* Badge */}
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-1.5 text-xs font-bold text-stone-700 shadow-xs">
+          <BookOpen className="h-3.5 w-3.5 text-[#1B4332]" />
+          Guia Interativo de Consciência Crítica & Recursos
         </div>
 
-        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-100 border border-emerald-200/80 px-3.5 py-1 text-xs font-bold text-emerald-800">
-          <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-          Ação Educativa: Consciência Crítica & Sustentabilidade
-        </div>
-
-        <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1]">
-          QUANTO CUSTA O SEU CONSUMO?
+        {/* Headline */}
+        <h1 className="text-balance text-4xl font-black tracking-tight text-stone-900 sm:text-5xl sm:leading-[1.15]">
+          QUANTO CUSTA O NOSSO CONSUMO?
         </h1>
 
-        <p className="mt-5 max-w-xl text-lg text-slate-600">
-          Descubra como seus hábitos cotidianos podem influenciar seus gastos e o
-          uso de recursos.
+        {/* Subtitle */}
+        <p className="mt-4 max-w-xl text-base sm:text-lg text-stone-600 leading-relaxed">
+          Descubra o impacto real dos seus hábitos diários, veja quanto você gasta e
+          compreenda como a lógica de lucro das grandes empresas afeta o esgotamento dos recursos do planeta.
         </p>
 
-        <p className="mt-4 max-w-xl text-base text-slate-500">
-          Responda algumas perguntas e veja uma estimativa do seu perfil de
-          consumo, dos seus gastos anuais e de quanto algumas mudanças poderiam
-          representar em economia.
-        </p>
+        {/* CTA Buttons */}
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+          <button
+            onClick={onStart}
+            className="btn-primary w-full text-base sm:w-auto"
+          >
+            Começar o Questionário
+            <ArrowRight className="h-4 w-4" />
+          </button>
 
-        <button onClick={onStart} className="btn-primary mt-10 text-lg">
-          COMEÇAR
-        </button>
-
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <button
             onClick={() => setQrOpen(true)}
-            className="btn-secondary"
+            className="btn-secondary w-full sm:w-auto"
           >
-            <QrCode className="h-4 w-4" />
-            Acessar pelo celular
-          </button>
-          <button onClick={onOpenFairResults} className="btn-ghost">
-            <BarChart3 className="h-4 w-4" />
-            Resultados da feira
+            <QrCode className="h-4 w-4 text-stone-600" />
+            Abrir no Celular
           </button>
         </div>
 
-        {/* Category pictograms */}
-        <div className="mt-14 grid w-full grid-cols-3 gap-3 sm:grid-cols-6">
-          {[
-            { icon: Zap, label: 'Energia' },
-            { icon: Droplets, label: 'Água' },
-            { icon: Bike, label: 'Transporte' },
-            { icon: Carrot, label: 'Alimentação' },
-            { icon: ShoppingBag, label: 'Compras' },
-            { icon: Recycle, label: 'Resíduos' },
-          ].map(({ icon: Icon, label }) => (
-            <div
-              key={label}
-              className="flex flex-col items-center gap-2 rounded-2xl border border-slate-100 bg-white/70 px-2 py-3 text-emerald-700 backdrop-blur-sm"
-            >
-              <Icon className="h-5 w-5" />
-              <span className="text-[11px] font-medium text-slate-500">
-                {label}
-              </span>
-            </div>
-          ))}
+        <button
+          onClick={onOpenFairResults}
+          className="btn-ghost mt-2 text-xs font-semibold text-stone-500"
+        >
+          <BarChart3 className="h-3.5 w-3.5" />
+          Ver Estatísticas Coletivas da Feira
+        </button>
+
+        {/* Categories Grid */}
+        <div className="mt-12 w-full border-t border-stone-200/80 pt-8">
+          <p className="mb-4 text-xs font-bold uppercase tracking-wider text-stone-400">
+            6 Dimensões Analisadas
+          </p>
+          <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-6">
+            {[
+              { icon: Zap, label: 'Energia' },
+              { icon: Droplets, label: 'Água' },
+              { icon: Bike, label: 'Transporte' },
+              { icon: Carrot, label: 'Alimentos' },
+              { icon: ShoppingBag, label: 'Compras' },
+              { icon: Recycle, label: 'Resíduos' },
+            ].map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center gap-1.5 rounded-xl border border-stone-200 bg-white p-3 text-stone-700 shadow-2xs transition hover:border-stone-400"
+              >
+                <Icon className="h-5 w-5 text-[#1B4332]" />
+                <span className="text-xs font-bold text-stone-800">{label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </main>
+
+      {/* Footer Info */}
+      <footer className="border-t border-stone-200/80 bg-white/40 py-4 px-6 text-center text-xs text-stone-500">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-6">
+          <span className="flex items-center gap-1.5">
+            <Clock className="h-3.5 w-3.5 text-stone-400" />
+            Duração: ~3 minutos
+          </span>
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck className="h-3.5 w-3.5 text-stone-400" />
+            100% Anônimo
+          </span>
+          <span className="text-stone-400">
+            Projeto interdisciplinar para reflexão e debate escolar
+          </span>
+        </div>
+      </footer>
 
       {qrOpen && <QRCodeModal onClose={() => setQrOpen(false)} />}
     </div>
   );
 }
+
