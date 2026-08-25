@@ -73,8 +73,8 @@ export default function FairAverageComparison({
 
   return (
     <section className="card mt-6">
-      <div className="flex items-center gap-2 text-slate-900">
-        <Users className="h-5 w-5 text-emerald-600" />
+      <div className="flex items-center gap-2 text-forest-950">
+        <Users className="h-5 w-5 text-forest-950" />
         <h2 className="text-lg font-bold">Você vs. a feira</h2>
       </div>
       <p className="mt-1 text-sm text-slate-500">

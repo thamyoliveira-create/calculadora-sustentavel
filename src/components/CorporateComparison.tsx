@@ -28,13 +28,13 @@ export default function CorporateComparison() {
 
   return (
     <section className="card mt-6">
-      <div className="flex items-center gap-2 text-slate-900">
-        <Building2 className="h-5 w-5 text-sky-600" />
+      <div className="flex items-center gap-2 text-forest-950">
+        <Building2 className="h-5 w-5 text-forest-950" />
         <h2 className="text-lg font-bold">
           E as grandes empresas?
         </h2>
       </div>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1 text-xs text-stone-500">
         Compare seu consumo individual com o de grandes empresas e da indústria.
         Nem sempre o consumidor é o principal responsável pelo excesso de gastos
         e de recursos.

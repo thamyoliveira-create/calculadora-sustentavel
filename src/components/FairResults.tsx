@@ -49,19 +49,18 @@ export default function FairResults({ onBack }: FairResultsProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50/40 via-white to-white">
+    <div className="min-h-screen bg-[#F8F8F7] text-forest-950">
       <div className="mx-auto max-w-3xl px-5 py-10 sm:py-14">
         <button onClick={onBack} className="btn-ghost mb-6 -ml-3">
           <ArrowLeft className="h-4 w-4" />
           Voltar ao início
         </button>
 
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Resultados da Feira
+        <h1 className="text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl">
+          Resultados Coletivos da Feira
         </h1>
-        <p className="mt-2 text-sm text-slate-500">
-          Dados anônimos coletados durante o evento. Nenhuma informação
-          pessoal é identificada.
+        <p className="mt-2 text-xs sm:text-sm text-stone-500">
+          Dados anônimos consolidados durante o evento escolar.
         </p>
 
         {loading && (

@@ -11,8 +11,6 @@ import {
   MessageSquareQuote,
   Sparkles,
   ShieldAlert,
-  HelpCircle,
-  TrendingDown,
 } from "lucide-react";
 import { CalculationResult } from "@/lib/calculations";
 import { formatNumber } from "@/lib/format";
@@ -134,17 +132,17 @@ export default function CriticalThinkingSection({ result }: Props) {
   const DueloIcon = currentDuelo.icon;
 
   return (
-    <section id="section-sistema" className="card mt-6 scroll-mt-20 border-2 border-stone-800 bg-stone-900 text-stone-100 p-6 sm:p-8 rounded-2xl shadow-sm">
+    <section id="section-sistema" className="card mt-6 scroll-mt-20 border border-forest-800/40 bg-forest-950 text-stone-100 p-6 sm:p-8 rounded-2xl shadow-sm">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <div className="inline-flex items-center gap-1.5 rounded-md bg-stone-800 border border-stone-700 px-2.5 py-1 text-[11px] font-bold text-amber-300 w-fit">
-          <Sparkles className="h-3 w-3" />
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-forest-900 border border-forest-800 px-3 py-1 text-[10px] font-bold uppercase tracking-[.18em] text-gold-300 w-fit">
+          <Sparkles className="h-3 w-3 text-gold-400" />
           Dossiê Crítico • Para o Ensino Médio
         </div>
-        <h2 className="text-2xl font-black tracking-tight sm:text-3xl text-white">
+        <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl text-white">
           O SISTEMA & NOSSOS RECURSOS
         </h2>
-        <p className="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed font-normal">
           Compreenda como a lógica de lucro corporativo molda os hábitos de consumo,
           por que os recursos naturais da Terra estão no limite e por que a culpa
           da crise ecológica não é apenas do cidadão comum.
@@ -152,13 +150,13 @@ export default function CriticalThinkingSection({ result }: Props) {
       </div>
 
       {/* Tabs */}
-      <div className="mt-6 flex flex-wrap gap-2 border-b border-stone-800 pb-3">
+      <div className="mt-6 flex flex-wrap gap-2 border-b border-forest-900 pb-3">
         <button
           onClick={() => setActiveTab("duelo")}
-          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "duelo"
-              ? "bg-white text-stone-950 shadow-xs"
-              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
+              ? "bg-white text-forest-950 shadow-xs"
+              : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
           <Scale className="h-3.5 w-3.5" />
@@ -167,10 +165,10 @@ export default function CriticalThinkingSection({ result }: Props) {
 
         <button
           onClick={() => setActiveTab("greenwashing")}
-          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "greenwashing"
-              ? "bg-white text-stone-950 shadow-xs"
-              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
+              ? "bg-white text-forest-950 shadow-xs"
+              : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
           <ShieldAlert className="h-3.5 w-3.5" />
@@ -179,10 +177,10 @@ export default function CriticalThinkingSection({ result }: Props) {
 
         <button
           onClick={() => setActiveTab("recursos")}
-          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "recursos"
-              ? "bg-white text-stone-950 shadow-xs"
-              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
+              ? "bg-white text-forest-950 shadow-xs"
+              : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
           <Hourglass className="h-3.5 w-3.5" />
@@ -191,10 +189,10 @@ export default function CriticalThinkingSection({ result }: Props) {
 
         <button
           onClick={() => setActiveTab("debate")}
-          className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
+          className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "debate"
-              ? "bg-white text-stone-950 shadow-xs"
-              : "bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white"
+              ? "bg-white text-forest-950 shadow-xs"
+              : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
           <MessageSquareQuote className="h-3.5 w-3.5" />
@@ -206,7 +204,7 @@ export default function CriticalThinkingSection({ result }: Props) {
       {activeTab === "duelo" && (
         <div className="mt-5 space-y-5 animate-fade-in-up">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+            <p className="text-[10px] font-bold uppercase tracking-[.18em] text-gold-300">
               Escolha um setor para comparar a escala:
             </p>
             <div className="mt-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -219,11 +217,11 @@ export default function CriticalThinkingSection({ result }: Props) {
                     onClick={() => setSelectedDuelo(item.id)}
                     className={`flex flex-col items-start gap-1.5 rounded-xl border p-2.5 text-left transition ${
                       isSelected
-                        ? "border-amber-400 bg-stone-800 ring-1 ring-amber-400 text-white"
-                        : "border-stone-800 bg-stone-950/60 text-stone-400 hover:border-stone-700 hover:text-white"
+                        ? "border-gold-400 bg-[#063329] ring-1 ring-gold-400 text-white"
+                        : "border-forest-900 bg-[#021f18]/60 text-stone-300 hover:border-forest-800 hover:text-white"
                     }`}
                   >
-                    <Icon className={`h-4 w-4 ${isSelected ? "text-amber-300" : "text-stone-500"}`} />
+                    <Icon className={`h-4 w-4 ${isSelected ? "text-gold-400" : "text-stone-400"}`} />
                     <div>
                       <p className="text-xs font-bold line-clamp-1">{item.name}</p>
                       <span className="text-[10px] text-stone-400 font-medium">{item.tag}</span>
@@ -235,9 +233,9 @@ export default function CriticalThinkingSection({ result }: Props) {
           </div>
 
           {/* Duelo Card */}
-          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4 sm:p-5">
+          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4 sm:p-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-800 text-amber-300 border border-stone-700">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest-900 text-gold-300 border border-forest-800">
                 <DueloIcon className="h-5 w-5" />
               </div>
               <div>
@@ -247,8 +245,8 @@ export default function CriticalThinkingSection({ result }: Props) {
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-stone-900 border border-stone-800 p-3.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+              <div className="rounded-xl bg-[#063329] border border-forest-800 p-3.5">
+                <span className="text-[10px] font-bold uppercase tracking-[.15em] text-emerald-400">
                   Sua Economia Individual (1 Ano)
                 </span>
                 <p className="mt-1 text-xl font-black text-emerald-400">
@@ -259,8 +257,8 @@ export default function CriticalThinkingSection({ result }: Props) {
                 </p>
               </div>
 
-              <div className="rounded-xl bg-stone-900 border border-rose-900/60 p-3.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400">
+              <div className="rounded-xl bg-[#063329] border border-rose-900/60 p-3.5">
+                <span className="text-[10px] font-bold uppercase tracking-[.15em] text-rose-400">
                   Escala da Indústria
                 </span>
                 <p className="mt-1 text-xl font-black text-rose-400">
@@ -272,12 +270,12 @@ export default function CriticalThinkingSection({ result }: Props) {
               </div>
             </div>
 
-            <div className="mt-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 p-3.5 text-xs text-amber-200 leading-relaxed">
-              <span className="font-bold text-amber-300">🔍 O Contraste Real: </span>
+            <div className="mt-3.5 rounded-xl bg-gold-500/10 border border-gold-500/20 p-3.5 text-xs text-gold-200 leading-relaxed">
+              <span className="font-bold text-gold-300">🔍 O Contraste Real: </span>
               {currentDuelo.comparisonText}
             </div>
 
-            <div className="mt-2.5 rounded-xl bg-stone-900/80 p-3 text-xs text-stone-300 leading-relaxed border border-stone-800">
+            <div className="mt-2.5 rounded-xl bg-[#063329]/80 p-3 text-xs text-stone-300 leading-relaxed border border-forest-800">
               <span className="font-bold text-stone-200">⚠️ Por trás do Lucro: </span>
               {currentDuelo.realityCheck}
             </div>
@@ -288,9 +286,9 @@ export default function CriticalThinkingSection({ result }: Props) {
       {/* TAB 2: GREENWASHING */}
       {activeTab === "greenwashing" && (
         <div className="mt-5 space-y-3.5 animate-fade-in-up">
-          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
+          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <AlertTriangle className="h-4 w-4 text-amber-400" />
+              <AlertTriangle className="h-4 w-4 text-gold-400" />
               O que é Greenwashing? (A Maquiagem Verde)
             </h3>
             <p className="mt-1.5 text-xs text-stone-300 leading-relaxed">
@@ -300,8 +298,8 @@ export default function CriticalThinkingSection({ result }: Props) {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
-              <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+            <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
+              <span className="rounded-full bg-gold-500/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[.15em] text-gold-300">
                 Fato Histórico 1
               </span>
               <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">A Invenção da \"Pegada Individual\"</h4>
@@ -311,8 +309,8 @@ export default function CriticalThinkingSection({ result }: Props) {
               </p>
             </div>
 
-            <div className="rounded-xl border border-stone-800 bg-stone-950 p-4">
-              <span className="rounded bg-rose-500/20 px-2 py-0.5 text-[10px] font-bold text-rose-300">
+            <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
+              <span className="rounded-full bg-rose-500/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[.15em] text-rose-300">
                 Fato Histórico 2
               </span>
               <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">Obsolescência Programada</h4>
@@ -327,49 +325,49 @@ export default function CriticalThinkingSection({ result }: Props) {
       {/* TAB 3: RECURSOS FINITOS */}
       {activeTab === "recursos" && (
         <div className="mt-5 space-y-4 animate-fade-in-up">
-          <div className="rounded-xl border border-stone-800 bg-stone-950 p-4 sm:p-5">
+          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4 sm:p-5">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400">
+              <span className="text-[10px] font-bold uppercase tracking-[.18em] text-rose-400">
                 Alerta Ecológico
               </span>
-              <span className="rounded bg-rose-500/20 px-2 py-0.5 text-[10px] font-bold text-rose-300">
+              <span className="rounded-full bg-rose-500/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[.15em] text-rose-300">
                 Sobrecarga da Terra
               </span>
             </div>
-            <h3 className="mt-1 text-base sm:text-lg font-black text-white">
+            <h3 className="mt-1 text-base sm:text-lg font-extrabold text-white">
               O Dia da Sobrecarga da Terra (Earth Overshoot Day)
             </h3>
             <p className="mt-1 text-xs text-stone-300 leading-relaxed">
               Todos os anos, a humanidade consome em apenas <span className="text-white font-bold">7 a 8 meses</span> tudo o que o planeta consegue regenerar em 365 dias.
             </p>
 
-            <div className="mt-3.5 rounded-lg bg-stone-900 p-3 border border-stone-800">
+            <div className="mt-3.5 rounded-lg bg-[#063329] p-3 border border-forest-800">
               <div className="flex justify-between text-[11px] font-bold text-stone-300">
                 <span>Janeiro</span>
-                <span className="text-rose-400">Agosto (Recursos do ano esgotados)</span>
+                <span className="text-rose-400">Agosto (Recursos esgotados)</span>
                 <span>Dezembro</span>
               </div>
-              <div className="mt-1.5 h-3 w-full overflow-hidden rounded-full bg-stone-800 flex">
+              <div className="mt-1.5 h-3 w-full overflow-hidden rounded-full bg-forest-950 flex">
                 <div className="h-full bg-emerald-600 w-[60%]" title="Recursos regeneráveis" />
                 <div className="h-full bg-rose-600 w-[40%]" title="Cheque especial ecológico" />
               </div>
               <div className="mt-1.5 flex justify-between text-[10px] text-stone-400">
-                <span className="text-emerald-400">● 60% Recursos regeneráveis</span>
-                <span className="text-rose-400">● 40% Déficit ecológico</span>
+                <span className="text-emerald-400 font-medium">● 60% Recursos regeneráveis</span>
+                <span className="text-rose-400 font-medium">● 40% Déficit ecológico</span>
               </div>
             </div>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
+            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
               <p className="text-lg font-black text-rose-400">1.75 Planetas</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Consumo da economia global hoje. Mas só temos 1 planeta.</p>
             </div>
-            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
-              <p className="text-lg font-black text-amber-400">10% Mais Ricos</p>
+            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
+              <p className="text-lg font-black text-gold-300">10% Mais Ricos</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Geram quase 50% de todas as emissões globais de carbono.</p>
             </div>
-            <div className="rounded-xl bg-stone-950 border border-stone-800 p-3 text-center">
+            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
               <p className="text-lg font-black text-sky-400">Sul Global</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Populações pobres sofrem mais com a seca e o calor extremos.</p>
             </div>
@@ -388,21 +386,21 @@ export default function CriticalThinkingSection({ result }: Props) {
             {DEBATE_QUESTIONS.map((item) => (
               <div
                 key={item.number}
-                className="rounded-xl border border-stone-800 bg-stone-950 p-3.5"
+                className="rounded-xl border border-forest-900 bg-[#021f18] p-3.5"
               >
                 <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-stone-800 text-amber-300 text-[10px] font-black">
+                  <span className="flex h-5 w-5 items-center justify-center rounded bg-forest-900 text-gold-300 text-[10px] font-black border border-forest-800">
                     {item.number}
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400">
+                  <span className="text-[10px] font-bold uppercase tracking-[.15em] text-gold-300">
                     {item.theme}
                   </span>
                 </div>
                 <h4 className="mt-1.5 text-xs sm:text-sm font-bold text-white leading-snug">
                   {item.question}
                 </h4>
-                <p className="mt-1.5 rounded-lg bg-stone-900 p-2.5 text-[11px] text-stone-400 leading-relaxed border border-stone-800">
-                  <span className="font-semibold text-stone-300">Ponto de partida: </span>
+                <p className="mt-1.5 rounded-lg bg-[#063329] p-2.5 text-[11px] text-stone-300 leading-relaxed border border-forest-800">
+                  <span className="font-semibold text-gold-200">Ponto de partida: </span>
                   {item.context}
                 </p>
               </div>

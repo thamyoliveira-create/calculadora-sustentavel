@@ -50,8 +50,8 @@ const CLASSIFICATION_STYLES: Record<string, string> = {
   "alto-impacto": "text-rose-800 bg-rose-50 border-rose-200",
   transicao: "text-amber-800 bg-amber-50 border-amber-200",
   consciente: "text-teal-900 bg-teal-50 border-teal-200",
-  sustentavel: "text-emerald-900 bg-emerald-50 border-emerald-300",
-  "muito-sustentavel": "text-emerald-950 bg-emerald-100/90 border-emerald-300",
+  sustentavel: "text-forest-950 bg-emerald-50 border-emerald-300",
+  "muito-sustentavel": "text-forest-950 bg-emerald-100/90 border-emerald-300",
 };
 
 export default function ResultsScreen({
@@ -94,7 +94,7 @@ export default function ResultsScreen({
 
   const classStyle =
     CLASSIFICATION_STYLES[result.classification] ??
-    "text-emerald-900 bg-emerald-50 border-emerald-300";
+    "text-forest-950 bg-emerald-50 border-emerald-300";
 
   function resetSimulator() {
     setEnergyPct(10);
@@ -127,15 +127,15 @@ export default function ResultsScreen({
   );
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5] text-stone-900 pb-16">
+    <div className="min-h-screen bg-[#F8F8F7] text-forest-950 pb-16">
       {/* Quick nav */}
-      <div className="sticky top-0 z-30 border-b border-stone-200/90 bg-[#FBF9F5]/95 backdrop-blur-md">
+      <div className="sticky top-0 z-30 border-b border-stone-200/80 bg-[#F8F8F7]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl gap-1.5 overflow-x-auto px-4 py-2.5 scrollbar-none">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="flex flex-none items-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-1.5 text-xs font-bold text-stone-700 transition hover:border-stone-400 hover:bg-stone-50"
+              className="flex flex-none items-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-1.5 text-xs font-bold text-stone-700 transition hover:border-stone-400 hover:bg-stone-50 shadow-2xs"
             >
               {item.icon}
               {item.label}
@@ -147,10 +147,10 @@ export default function ResultsScreen({
       <div className="mx-auto max-w-3xl px-5 py-8 sm:py-12">
         {/* TITLE */}
         <div className="text-center">
-          <span className="rounded-md bg-stone-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-stone-600 border border-stone-200">
-            Relatório de Conscientização
+          <span className="rounded-full bg-stone-100 px-3 py-1 text-[10px] font-bold uppercase tracking-[.18em] text-forest-900 border border-stone-200">
+            Relatório de Diagnóstico & Consciência
           </span>
-          <h1 className="mt-3 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">
+          <h1 className="mt-3.5 text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl">
             SEU PERFIL DE CONSUMO
           </h1>
         </div>
@@ -160,18 +160,18 @@ export default function ResultsScreen({
           <div className="relative mx-auto flex h-40 w-40 items-center justify-center">
             <ScoreRing score={result.finalScore} />
             <div className="absolute flex flex-col items-center">
-              <span className="text-4xl font-black text-stone-900">
+              <span className="text-4xl font-black text-forest-950">
                 {result.finalScore}
               </span>
               <span className="text-xs font-bold text-stone-400">de 100</span>
             </div>
           </div>
           <div
-            className={`mt-4 inline-flex rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-wide ${classStyle}`}
+            className={`mt-4 inline-flex rounded-full border px-4 py-1.5 text-xs font-extrabold uppercase tracking-[.12em] ${classStyle}`}
           >
             {classificationName(result.classification)}
           </div>
-          <p className="mx-auto mt-3 max-w-md text-sm text-stone-600 leading-relaxed">
+          <p className="mx-auto mt-3.5 max-w-md text-sm text-stone-600 leading-relaxed font-normal">
             {result.classificationMessage}
           </p>
         </div>
@@ -196,18 +196,18 @@ export default function ResultsScreen({
         </div>
 
         {/* ECONOMIA DESTAQUE */}
-        <div className="mt-5 rounded-2xl bg-[#1B4332] p-6 text-center text-white sm:p-8 shadow-xs border border-stone-800">
-          <p className="text-xs font-bold uppercase tracking-widest text-emerald-300">
-            Economia Anual Possível com Mudança de Hábitos
+        <div className="mt-5 rounded-2xl bg-forest-950 p-6 text-center text-white sm:p-8 shadow-xs border border-forest-800/40">
+          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[.2em] text-gold-300">
+            Economia Anual Estimada com Mudança de Hábitos
           </p>
-          <p className="mt-2 text-4xl font-black sm:text-5xl text-white">
+          <p className="mt-2 text-4xl font-extrabold sm:text-5xl text-white">
             {formatBRL(result.annualSavingsDefault)}
           </p>
-          <p className="mt-2 text-xs font-medium text-emerald-200">
-            Em 5 anos acumulados: <span className="font-black text-white">{formatBRL(result.fiveYearSavingsDefault)}</span>
+          <p className="mt-2 text-xs font-medium text-gold-100">
+            Em 5 anos acumulados: <span className="font-bold text-white">{formatBRL(result.fiveYearSavingsDefault)}</span>
           </p>
-          <p className="mx-auto mt-3 max-w-md text-[11px] leading-relaxed text-emerald-200/70 border-t border-emerald-800/60 pt-3">
-            Valores estimados para fins educativos e conscientização em feira escolar.
+          <p className="mx-auto mt-3.5 max-w-md text-[11px] leading-relaxed text-emerald-100/70 border-t border-forest-800/80 pt-3">
+            Valores projetados para fins de aprendizagem e reflexão em feira escolar.
           </p>
         </div>
 
@@ -215,9 +215,9 @@ export default function ResultsScreen({
         <CriticalThinkingSection result={result} />
 
         {/* ECOLOGICAL IMPACT CARD */}
-        <div id="section-impacto" className="card mt-6 scroll-mt-20 border-emerald-200/80 bg-emerald-50/30">
-          <div className="flex items-center gap-2 text-stone-900">
-            <Leaf className="h-5 w-5 text-[#1B4332]" />
+        <div id="section-impacto" className="card mt-6 scroll-mt-20 border-forest-900/15 bg-forest-50/30">
+          <div className="flex items-center gap-2 text-forest-950">
+            <Leaf className="h-5 w-5 text-forest-950" />
             <h2 className="text-lg font-bold">Seu Impacto Positivo no Planeta</h2>
           </div>
           <p className="mt-1 text-xs text-stone-600">
@@ -225,26 +225,26 @@ export default function ResultsScreen({
           </p>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4">
-              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-emerald-100 text-[#1B4332]">
+            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-2xs">
+              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-forest-50 text-forest-950 border border-forest-900/10">
                 <Leaf className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-stone-500">Emissões de CO₂ evitadas</p>
-                <p className="text-xl font-black text-[#1B4332]">
+                <p className="text-xl font-black text-forest-950">
                   ~{formatNumber(result.annualCo2Kg)} kg <span className="text-xs font-normal text-stone-500">/ano</span>
                 </p>
                 <p className="text-[10px] text-stone-400">Menos poluição gerada na matriz elétrica e aterros</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4">
-              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-teal-100 text-teal-800">
+            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-2xs">
+              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-teal-50 text-teal-900 border border-teal-900/10">
                 <Trees className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-stone-500">Equivalente em árvores</p>
-                <p className="text-xl font-black text-teal-800">
+                <p className="text-xl font-black text-teal-900">
                   ~{result.treesEquivalent} {result.treesEquivalent === 1 ? "árvore" : "árvores"} <span className="text-xs font-normal text-stone-500">poupadas</span>
                 </p>
                 <p className="text-[10px] text-stone-400">Capacidade de absorção florestal preservada</p>
@@ -256,13 +256,13 @@ export default function ResultsScreen({
         {/* 7-DAY CHALLENGE */}
         <section id="section-desafio" className="card mt-6 scroll-mt-20">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-stone-900">
-              <Target className="h-5 w-5 text-[#1B4332]" />
+            <div className="flex items-center gap-2 text-forest-950">
+              <Target className="h-5 w-5 text-forest-950" />
               <h2 className="text-lg font-bold">Desafio 7 Dias: Hábitos Sustentáveis</h2>
             </div>
             {completedTasks.length === SUSTAINABLE_CHALLENGE_TASKS.length && (
-              <span className="flex items-center gap-1 rounded-full bg-amber-100 border border-amber-300 px-2.5 py-0.5 text-xs font-bold text-amber-800">
-                <Trophy className="h-3.5 w-3.5" /> Concluído!
+              <span className="flex items-center gap-1 rounded-full bg-gold-100 border border-gold-300 px-2.5 py-0.5 text-xs font-bold text-forest-950">
+                <Trophy className="h-3.5 w-3.5 text-gold-500" /> Concluído!
               </span>
             )}
           </div>
@@ -278,7 +278,7 @@ export default function ResultsScreen({
             </div>
             <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-stone-100 border border-stone-200">
               <div
-                className="h-full bg-[#1B4332] transition-all duration-300"
+                className="h-full bg-forest-950 transition-all duration-300"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
@@ -293,27 +293,27 @@ export default function ResultsScreen({
                   onClick={() => toggleTask(task.id)}
                   className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition ${
                     isDone
-                      ? "border-emerald-300 bg-emerald-50/70 text-emerald-950"
+                      ? "border-forest-900/30 bg-forest-50/70 text-forest-950"
                       : "border-stone-200 bg-white hover:bg-stone-50 text-stone-800"
                   }`}
                 >
                   <div className="mt-0.5 flex-none">
                     {isDone ? (
-                      <CheckCircle2 className="h-4 w-4 text-[#1B4332]" />
+                      <CheckCircle2 className="h-4 w-4 text-forest-950" />
                     ) : (
                       <Circle className="h-4 w-4 text-stone-300" />
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="rounded bg-stone-100 border border-stone-200 px-1.5 py-0.5 text-[10px] font-bold text-stone-600">
+                      <span className="rounded-full bg-stone-100 border border-stone-200 px-2 py-0.5 text-[10px] font-bold text-stone-600">
                         Dia {task.day}
                       </span>
-                      <span className={`text-xs sm:text-sm font-bold ${isDone ? "line-through text-emerald-900" : ""}`}>
+                      <span className={`text-xs sm:text-sm font-bold ${isDone ? "line-through text-forest-900" : ""}`}>
                         {task.title}
                       </span>
                     </div>
-                    <p className={`mt-0.5 text-xs ${isDone ? "text-emerald-700" : "text-stone-500"}`}>
+                    <p className={`mt-0.5 text-xs ${isDone ? "text-forest-800" : "text-stone-500"}`}>
                       {task.description}
                     </p>
                   </div>
@@ -325,7 +325,7 @@ export default function ResultsScreen({
 
         {/* RECOMMENDATIONS */}
         <section id="section-recomendacoes" className="card mt-6 scroll-mt-20">
-          <div className="flex items-center gap-2 text-stone-900">
+          <div className="flex items-center gap-2 text-forest-950">
             <Lightbulb className="h-5 w-5 text-amber-600" />
             <h2 className="text-lg font-bold">Dicas Práticas para o seu Perfil</h2>
           </div>
@@ -376,8 +376,8 @@ export default function ResultsScreen({
 
         {/* SIMULATOR */}
         <section id="section-simulador" className="card mt-6 scroll-mt-20">
-          <div className="flex items-center gap-2 text-stone-900">
-            <SlidersHorizontal className="h-5 w-5 text-[#1B4332]" />
+          <div className="flex items-center gap-2 text-forest-950">
+            <SlidersHorizontal className="h-5 w-5 text-forest-950" />
             <h2 className="text-lg font-bold">
               Simulador de Redução de Gastos
             </h2>
@@ -419,8 +419,8 @@ export default function ResultsScreen({
 
         {/* CHARTS */}
         <section id="section-graficos" className="card mt-6 scroll-mt-20">
-          <div className="flex items-center gap-2 text-stone-900">
-            <Sparkles className="h-5 w-5 text-[#1B4332]" />
+          <div className="flex items-center gap-2 text-forest-950">
+            <Sparkles className="h-5 w-5 text-forest-950" />
             <h2 className="text-lg font-bold">Seu perfil por categoria</h2>
           </div>
           <div className="mt-4">
@@ -429,7 +429,7 @@ export default function ResultsScreen({
         </section>
 
         <section className="card mt-6">
-          <h2 className="text-lg font-bold text-stone-900">
+          <h2 className="text-lg font-bold text-forest-950">
             Gastos anuais: atual vs. com redução
           </h2>
           <div className="mt-4">
@@ -443,7 +443,7 @@ export default function ResultsScreen({
         </section>
 
         <section className="card mt-6">
-          <h2 className="text-lg font-bold text-stone-900">
+          <h2 className="text-lg font-bold text-forest-950">
             Economia acumulada em 5 anos
           </h2>
           <p className="mt-1 text-xs text-stone-500">
@@ -506,15 +506,15 @@ function ScoreRing({ score }: { score: number }) {
         r={radius}
         fill="none"
         stroke="#E7E5E4"
-        strokeWidth="10"
+        strokeWidth="9"
       />
       <circle
         cx="80"
         cy="80"
         r={radius}
         fill="none"
-        stroke="#1B4332"
-        strokeWidth="10"
+        stroke="#032820"
+        strokeWidth="9"
         strokeLinecap="round"
         strokeDasharray={circ}
         strokeDashoffset={offset}
@@ -539,7 +539,7 @@ function StatCard({
         {icon}
         <span className="text-xs font-semibold leading-tight">{label}</span>
       </div>
-      <span className="text-lg font-black text-stone-900">{value}</span>
+      <span className="text-lg font-black text-forest-950">{value}</span>
     </div>
   );
 }
@@ -558,11 +558,11 @@ function Slider({
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <span className="flex items-center gap-2 text-xs sm:text-sm font-bold text-stone-700">
+        <span className="flex items-center gap-2 text-xs sm:text-sm font-bold text-forest-950">
           {icon}
           {label}
         </span>
-        <span className="rounded-md bg-stone-100 border border-stone-200 px-2 py-0.5 text-xs font-black text-[#1B4332]">
+        <span className="rounded-full bg-forest-50 border border-forest-900/15 px-2.5 py-0.5 text-xs font-black text-forest-950">
           {value}%
         </span>
       </div>
@@ -592,13 +592,13 @@ function SimStat({
     <div
       className={`rounded-xl p-3 text-center border ${
         highlight
-          ? "bg-[#1B4332] text-white border-stone-800"
-          : "bg-stone-50 text-stone-900 border-stone-200"
+          ? "bg-forest-950 text-white border-forest-800"
+          : "bg-stone-50 text-forest-950 border-stone-200"
       }`}
     >
       <p
-        className={`text-[10px] font-bold uppercase tracking-wider ${
-          highlight ? "text-emerald-300" : "text-stone-500"
+        className={`text-[10px] font-bold uppercase tracking-[.15em] ${
+          highlight ? "text-gold-300" : "text-stone-500"
         }`}
       >
         {label}

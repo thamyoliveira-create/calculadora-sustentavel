@@ -51,17 +51,16 @@ export default function QuizScreen({
   const Icon = CATEGORY_ICONS[question.category];
 
   return (
-  return (
-    <div className="min-h-screen bg-[#FBF9F5] text-stone-900">
+    <div className="min-h-screen bg-[#F8F8F7] text-forest-950">
       <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-between px-5 py-8 sm:py-12">
         {/* Header: category + progress */}
         <div className="mb-6">
           <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-[#1B4332]">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100/80 border border-emerald-200">
-                <Icon className="h-4 w-4 text-[#1B4332]" />
+            <div className="flex items-center gap-2.5 text-forest-950">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-forest-50 border border-forest-900/15 shadow-2xs">
+                <Icon className="h-4 w-4 text-forest-950" />
               </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-stone-700">
+              <span className="text-[10px] font-extrabold uppercase tracking-[.18em] text-forest-900">
                 {CATEGORY_LABELS[question.category]}
               </span>
             </div>
@@ -73,7 +72,7 @@ export default function QuizScreen({
           {/* Progress bar */}
           <div className="h-2 w-full overflow-hidden rounded-full bg-stone-200">
             <div
-              className="h-full rounded-full bg-[#1B4332] transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-forest-950 transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -82,10 +81,10 @@ export default function QuizScreen({
         {/* Question card */}
         <div key={question.id} className="animate-fade-in-up card flex-1 flex flex-col justify-between">
           <div>
-            <span className="inline-block rounded-md bg-stone-100 px-2 py-0.5 text-[11px] font-bold text-stone-600 border border-stone-200">
+            <span className="inline-block rounded-full bg-stone-100 px-3 py-1 text-[10px] font-bold uppercase tracking-[.15em] text-stone-600 border border-stone-200">
               Pergunta {question.id}
             </span>
-            <h2 className="mt-3 text-balance text-xl font-bold leading-snug text-stone-900 sm:text-2xl">
+            <h2 className="mt-3.5 text-balance text-xl font-bold leading-snug text-forest-950 sm:text-2xl">
               {question.prompt}
             </h2>
 
@@ -176,7 +175,7 @@ function ChoiceInput({
             <span
               className={`flex h-5 w-5 flex-none items-center justify-center rounded-full border transition ${
                 selected
-                  ? 'border-[#1B4332] bg-[#1B4332] text-white'
+                  ? 'border-forest-950 bg-forest-950 text-white'
                   : 'border-stone-300 bg-white'
               }`}
             >
@@ -219,7 +218,7 @@ function NumericInput({
           value={value ?? ''}
           onChange={(e) => onChange(clamp(parseInt(e.target.value, 10)))}
           placeholder="0"
-          className="w-36 rounded-xl border-2 border-stone-200 bg-white px-4 py-3 text-center text-3xl font-black text-stone-900 outline-none transition focus:border-[#1B4332] focus:ring-2 focus:ring-[#1B4332]/10"
+          className="w-36 rounded-xl border-2 border-stone-200 bg-white px-4 py-3 text-center text-3xl font-black text-forest-950 outline-none transition focus:border-forest-950 focus:ring-2 focus:ring-forest-950/10"
         />
         {question.unit && (
           <span className="pb-3 text-sm font-bold text-stone-500">
@@ -237,7 +236,7 @@ function NumericInput({
           >
             −
           </button>
-          <span className="min-w-[3ch] text-center text-2xl font-black text-[#1B4332]">
+          <span className="min-w-[3ch] text-center text-2xl font-black text-forest-950">
             {value ?? '–'}
           </span>
           <button
