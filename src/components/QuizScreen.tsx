@@ -57,7 +57,7 @@ export default function QuizScreen({
         <div className="mb-6">
           <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center gap-2.5 text-forest-950">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-forest-50 border border-forest-900/15 shadow-2xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-forest-50 border border-forest-900/15 shadow-sm">
                 <Icon className="h-4 w-4 text-forest-950" />
               </span>
               <span className="text-[10px] font-extrabold uppercase tracking-[.18em] text-forest-900">

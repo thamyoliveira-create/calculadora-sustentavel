@@ -135,7 +135,7 @@ export default function ResultsScreen({
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="flex flex-none items-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-1.5 text-xs font-bold text-stone-700 transition hover:border-stone-400 hover:bg-stone-50 shadow-2xs"
+              className="flex flex-none items-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-1.5 text-xs font-bold text-stone-700 transition hover:border-stone-400 hover:bg-stone-50 shadow-sm"
             >
               {item.icon}
               {item.label}
@@ -196,7 +196,7 @@ export default function ResultsScreen({
         </div>
 
         {/* ECONOMIA DESTAQUE */}
-        <div className="mt-5 rounded-2xl bg-forest-950 p-6 text-center text-white sm:p-8 shadow-xs border border-forest-800/40">
+        <div className="mt-5 rounded-2xl bg-forest-950 p-6 text-center text-white sm:p-8 shadow-sm border border-forest-800/40">
           <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[.2em] text-gold-300">
             Economia Anual Estimada com Mudança de Hábitos
           </p>
@@ -225,7 +225,7 @@ export default function ResultsScreen({
           </p>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-2xs">
+            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-forest-50 text-forest-950 border border-forest-900/10">
                 <Leaf className="h-5 w-5" />
               </div>
@@ -238,7 +238,7 @@ export default function ResultsScreen({
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-2xs">
+            <div className="flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-teal-50 text-teal-900 border border-teal-900/10">
                 <Trees className="h-5 w-5" />
               </div>

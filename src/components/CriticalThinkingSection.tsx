@@ -155,7 +155,7 @@ export default function CriticalThinkingSection({ result }: Props) {
           onClick={() => setActiveTab("duelo")}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "duelo"
-              ? "bg-white text-forest-950 shadow-xs"
+              ? "bg-white text-forest-950 shadow-sm"
               : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
@@ -167,7 +167,7 @@ export default function CriticalThinkingSection({ result }: Props) {
           onClick={() => setActiveTab("greenwashing")}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "greenwashing"
-              ? "bg-white text-forest-950 shadow-xs"
+              ? "bg-white text-forest-950 shadow-sm"
               : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
@@ -179,7 +179,7 @@ export default function CriticalThinkingSection({ result }: Props) {
           onClick={() => setActiveTab("recursos")}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "recursos"
-              ? "bg-white text-forest-950 shadow-xs"
+              ? "bg-white text-forest-950 shadow-sm"
               : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >
@@ -191,7 +191,7 @@ export default function CriticalThinkingSection({ result }: Props) {
           onClick={() => setActiveTab("debate")}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
             activeTab === "debate"
-              ? "bg-white text-forest-950 shadow-xs"
+              ? "bg-white text-forest-950 shadow-sm"
               : "bg-forest-900/60 text-stone-300 hover:bg-forest-900 hover:text-white"
           }`}
         >

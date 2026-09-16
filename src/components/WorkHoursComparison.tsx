@@ -77,7 +77,7 @@ export default function WorkHoursComparison({
             onClick={() => setUseCustomWage(false)}
             className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
               !useCustomWage
-                ? 'bg-[#1B4332] text-white shadow-xs'
+                ? 'bg-[#1B4332] text-white shadow-sm'
                 : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-50'
             }`}
           >
@@ -87,7 +87,7 @@ export default function WorkHoursComparison({
             onClick={() => setUseCustomWage(true)}
             className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
               useCustomWage
-                ? 'bg-[#1B4332] text-white shadow-xs'
+                ? 'bg-[#1B4332] text-white shadow-sm'
                 : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-50'
             }`}
           >
