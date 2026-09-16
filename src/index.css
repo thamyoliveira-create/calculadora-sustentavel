@@ -24,15 +24,15 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-forest-950 px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-xs transition-all hover:bg-forest-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone-300 disabled:shadow-none border border-forest-800/40;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-forest-950 px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-sm transition-all hover:bg-forest-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone-300 disabled:shadow-none border border-forest-800/40;
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 px-7 py-3.5 text-sm sm:text-base font-bold text-forest-950 shadow-xs transition-all hover:bg-gold-400 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 px-7 py-3.5 text-sm sm:text-base font-bold text-forest-950 shadow-sm transition-all hover:bg-gold-400 active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-stone-800 shadow-2xs transition-all hover:bg-stone-50 hover:border-stone-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-stone-800 shadow-sm transition-all hover:bg-stone-50 hover:border-stone-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
   }
 
   .btn-ghost {
