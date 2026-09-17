@@ -14,21 +14,47 @@
   }
 
   body {
-    background-color: #F8F8F7;
-    color: #032820;
-    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    background-color: #F4E9D7;
+    color: #201A14;
+    font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer components {
+  /* Fundo "kraft" — tons terrosos tirados da colagem, usado em todas as páginas
+     para manter uma identidade visual coerente com o tema. */
+  .bg-kraft {
+    background-color: #F4E9D7;
+  }
+
+  .heading-kraft {
+    @apply font-extrabold uppercase tracking-tight text-[#201A14];
+  }
+
+  /* Destaque em degradê terroso (ferrugem → ocre), estilo cartaz/spray. */
+  .heading-gradient {
+    background-image: linear-gradient(120deg, #B3452F 0%, #D9A876 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Assinatura pessoal "tamiris" — único lugar onde a paleta Cyber Berry aparece. */
+  .text-berry-signature {
+    background-image: linear-gradient(120deg, #03E39D 0%, #FB58A7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-xl bg-forest-950 px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-sm transition-all hover:bg-forest-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone-300 disabled:shadow-none border border-forest-800/40;
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 px-7 py-3.5 text-sm sm:text-base font-bold text-forest-950 shadow-sm transition-all hover:bg-gold-400 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-sm transition-all hover:bg-gold-400 active:scale-[0.98];
   }
 
   .btn-secondary {
@@ -68,7 +94,7 @@ input[type='range'].eco-range::-webkit-slider-thumb {
   width: 22px;
   height: 22px;
   border-radius: 9999px;
-  background: #032820;
+  background: #1A0F1C;
   border: 3px solid #FFFFFF;
   box-shadow: 0 1px 4px rgba(3, 40, 32, 0.35);
   cursor: pointer;
@@ -81,7 +107,7 @@ input[type='range'].eco-range::-moz-range-thumb {
   width: 22px;
   height: 22px;
   border-radius: 9999px;
-  background: #032820;
+  background: #1A0F1C;
   border: 3px solid #FFFFFF;
   box-shadow: 0 1px 4px rgba(3, 40, 32, 0.35);
   cursor: pointer;
@@ -99,6 +125,30 @@ input[type='range'].eco-range::-moz-range-thumb {
 }
 .animate-fade-in-up {
   animation: fade-in-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.18) translate(-1.5%, -1.5%);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 18s ease-in-out infinite alternate;
+}
+
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+.animate-bounce-down {
+  animation: bounce-down 1.8s ease-in-out infinite;
 }
 
 @keyframes grow-width {

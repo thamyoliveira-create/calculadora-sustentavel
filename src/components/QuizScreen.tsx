@@ -51,7 +51,7 @@ export default function QuizScreen({
   const Icon = CATEGORY_ICONS[question.category];
 
   return (
-    <div className="min-h-screen bg-[#F8F8F7] text-forest-950">
+    <div className="bg-kraft min-h-screen text-forest-950">
       <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-between px-5 py-8 sm:py-12">
         {/* Header: category + progress */}
         <div className="mb-6">
@@ -64,7 +64,7 @@ export default function QuizScreen({
                 {CATEGORY_LABELS[question.category]}
               </span>
             </div>
-            <span className="text-xs font-bold text-stone-500">
+            <span className="text-xs font-bold text-forest-950/70">
               Etapa {current + 1} de {TOTAL_QUESTIONS}
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function QuizScreen({
           </div>
 
           {!isAnswered && (
-            <p className="mt-3 text-center text-xs text-stone-400">
+            <p className="mt-3 text-center text-xs text-forest-950/60">
               Selecione uma resposta acima para avançar.
             </p>
           )}

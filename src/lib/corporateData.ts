@@ -32,7 +32,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: '~3.000 a 33.000x mais',
     explanation:
       'O consumo mensal de uma única fábrica de grande porte equivale ao consumo de milhares de residências. A eficiência energética industrial tem impacto muito maior que ações individuais.',
-    source: 'Estimativa baseada em dados médios do setor industrial brasileiro.',
+    source: 'EPE — Empresa de Pesquisa Energética, Anuário Estatístico de Energia Elétrica; ANEEL, dados de consumo por classe.',
   },
   {
     category: 'Água',
@@ -42,7 +42,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: '~7.000 a 66.000x mais',
     explanation:
       'O consumo diário de uma indústria de médio porte equivale ao consumo de dezenas de milhares de pessoas. O reúso industrial tem potencial de economia muito superior ao residencial.',
-    source: 'Estimativa baseada em dados médios de uso industrial de água.',
+    source: 'ANA — Agência Nacional de Águas e Saneamento Básico, Conjuntura dos Recursos Hídricos no Brasil (uso industrial).',
   },
   {
     category: 'Resíduos sólidos',
@@ -52,7 +52,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: '~5.000 a 100.000x mais',
     explanation:
       'A maior parte dos resíduos industriais vem de processos produtivos, não do descarte individual. A logística reversa e a redução na fonte corporativa têm impacto dominante.',
-    source: 'Estimativa baseada em dados médios de geração de resíduos industriais.',
+    source: 'ABRELPE, Panorama dos Resíduos Sólidos no Brasil (resíduos urbanos x industriais).',
   },
   {
     category: 'Emissões de CO₂',
@@ -62,7 +62,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: '~28.000 a 278.000x mais',
     explanation:
       'Cerca de 70% das emissões globais de gases de efeito estufa vêm de atividades industriais e de energia em larga escala, não de ações individuais.',
-    source: 'Estimativa baseada em dados médios do SEEG (Sistema de Estimativa de Emissões de GEE).',
+    source: 'SEEG — Sistema de Estimativa de Emissões de Gases de Efeito Estufa (Observatório do Clima); IPCC, Sixth Assessment Report.',
   },
   {
     category: 'Desperdício de alimentos',
@@ -72,7 +72,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: 'Perda em escala de milhões de toneladas',
     explanation:
       'Grande parte do desperdício alimentar acontece na produção, transporte e armazenagem industrial — não apenas no consumidor final. A melhoria logística das empresas tem impacto massivo.',
-    source: 'Estimativa baseada em dados da FAO e Embrapa.',
+    source: 'FAO, The State of Food and Agriculture (Food Loss and Waste); Embrapa, estudos sobre perdas na cadeia agroindustrial.',
   },
   {
     category: 'Plástico',
@@ -82,7 +82,7 @@ export const CORPORATE_REFERENCES: CorporateReference[] = [
     ratioLabel: 'Produção em escala global',
     explanation:
       'A produção de plástico é quase totalmente corporativa. A redução de embalagens na fonte e o design sustentável das empresas têm impacto muito maior que o descarte individual.',
-    source: 'Estimativa baseada em dados globais de produção de plástico.',
+    source: 'OCDE, Global Plastics Outlook; Geyer, Jambeck & Law (2017), "Production, use, and fate of all plastics ever made", Science Advances.',
   },
 ];
 

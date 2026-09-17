@@ -103,7 +103,10 @@ export default function CorporateComparison() {
                     {ref.explanation}
                   </p>
 
-                  <p className="mt-2 text-[11px] italic text-slate-400">
+                  <p className="mt-3 flex items-start gap-1.5 text-[11px] leading-snug text-slate-500">
+                    <span className="mt-0.5 flex-none rounded bg-slate-100 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-slate-500">
+                      Fonte
+                    </span>
                     {ref.source}
                   </p>
                 </div>

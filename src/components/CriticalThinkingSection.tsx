@@ -31,6 +31,7 @@ interface IndustryDuelo {
   corpStatLabel: string;
   comparisonText: string;
   realityCheck: string;
+  source: string;
 }
 
 const DUELO_DATA: IndustryDuelo[] = [
@@ -46,6 +47,7 @@ const DUELO_DATA: IndustryDuelo[] = [
       "A água gasta para produzir uma calça jeans equivale a tudo o que um estudante bebe em 7 a 10 anos inteiros de vida.",
     realityCheck:
       "A indústria da moda descarta ou queima o equivalente a 1 caminhão de lixo cheio de roupas a cada segundo para manter a escassez e o consumo contínuo.",
+    source: "Levi Strauss & Co., Life Cycle Assessment (2015); Ellen MacArthur Foundation, A New Textiles Economy (2017).",
   },
   {
     id: "petroleo",
@@ -58,7 +60,8 @@ const DUELO_DATA: IndustryDuelo[] = [
     comparisonText:
       "Mesmo se toda a sua escola passar a vida inteira andando a pé, as decisões de 100 multinacionais continuam ditando o ritmo do colapso climático.",
     realityCheck:
-      "Em 2004, a petroleira BP investiu R$ 250 milhões para popularizar o conceito de \"pegada de carbono pessoal\", desviando a responsabilidade de suas perfurações para o cidadão.",
+      "Em 2004, a petroleira BP investiu em uma grande campanha publicitária para popularizar o conceito de \"pegada de carbono pessoal\", desviando parte da responsabilidade de suas perfurações para o cidadão.",
+    source: "CDP, Carbon Majors Report (2017); Mark Kaufman, \"The devious fossil fuel propaganda we all use\", Mashable (2020).",
   },
   {
     id: "big-tech",
@@ -72,6 +75,7 @@ const DUELO_DATA: IndustryDuelo[] = [
       "Aparelhos são propositalmente desenhados para quebrar e ficarem obsoletos em 2 ou 3 anos, forçando os consumidores a gastarem novamente.",
     realityCheck:
       "Minérios raros como lítio e cobalto são extraídos em condições degradantes no Sul Global para alimentar lançamentos anuais com pouca inovação real.",
+    source: "Global E-waste Monitor 2024 (UNITAR/ITU); Amnesty International, \"This Is What We Die For\" (2016).",
   },
   {
     id: "bebidas",
@@ -85,6 +89,7 @@ const DUELO_DATA: IndustryDuelo[] = [
       "Enquanto populações locais enfrentam racionamento, multinacionais drenam lençóis freáticos públicos para engarrafar água com açúcar em plástico descartável.",
     realityCheck:
       "Menos de 9% de todo o plástico já produzido na história foi realmente reciclado. O restante polui rios, oceanos e a cadeia alimentar como microplásticos.",
+    source: "Geyer, Jambeck & Law, \"Production, use, and fate of all plastics ever made\", Science Advances (2017).",
   },
 ];
 
@@ -217,8 +222,8 @@ export default function CriticalThinkingSection({ result }: Props) {
                     onClick={() => setSelectedDuelo(item.id)}
                     className={`flex flex-col items-start gap-1.5 rounded-xl border p-2.5 text-left transition ${
                       isSelected
-                        ? "border-gold-400 bg-[#063329] ring-1 ring-gold-400 text-white"
-                        : "border-forest-900 bg-[#021f18]/60 text-stone-300 hover:border-forest-800 hover:text-white"
+                        ? "border-gold-400 bg-[#3A2E22] ring-1 ring-gold-400 text-white"
+                        : "border-forest-900 bg-[#241D15]/60 text-stone-300 hover:border-forest-800 hover:text-white"
                     }`}
                   >
                     <Icon className={`h-4 w-4 ${isSelected ? "text-gold-400" : "text-stone-400"}`} />
@@ -233,7 +238,7 @@ export default function CriticalThinkingSection({ result }: Props) {
           </div>
 
           {/* Duelo Card */}
-          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4 sm:p-5">
+          <div className="rounded-xl border border-forest-900 bg-[#241D15] p-4 sm:p-5">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest-900 text-gold-300 border border-forest-800">
                 <DueloIcon className="h-5 w-5" />
@@ -245,7 +250,7 @@ export default function CriticalThinkingSection({ result }: Props) {
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-[#063329] border border-forest-800 p-3.5">
+              <div className="rounded-xl bg-[#3A2E22] border border-forest-800 p-3.5">
                 <span className="text-[10px] font-bold uppercase tracking-[.15em] text-emerald-400">
                   Sua Economia Individual (1 Ano)
                 </span>
@@ -257,7 +262,7 @@ export default function CriticalThinkingSection({ result }: Props) {
                 </p>
               </div>
 
-              <div className="rounded-xl bg-[#063329] border border-rose-900/60 p-3.5">
+              <div className="rounded-xl bg-[#3A2E22] border border-rose-900/60 p-3.5">
                 <span className="text-[10px] font-bold uppercase tracking-[.15em] text-rose-400">
                   Escala da Indústria
                 </span>
@@ -275,10 +280,17 @@ export default function CriticalThinkingSection({ result }: Props) {
               {currentDuelo.comparisonText}
             </div>
 
-            <div className="mt-2.5 rounded-xl bg-[#063329]/80 p-3 text-xs text-stone-300 leading-relaxed border border-forest-800">
+            <div className="mt-2.5 rounded-xl bg-[#3A2E22]/80 p-3 text-xs text-stone-300 leading-relaxed border border-forest-800">
               <span className="font-bold text-stone-200">⚠️ Por trás do Lucro: </span>
               {currentDuelo.realityCheck}
             </div>
+
+            <p className="mt-2.5 flex items-start gap-1.5 text-[10px] leading-snug text-stone-500">
+              <span className="mt-0.5 flex-none rounded bg-forest-900 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-gold-300">
+                Fonte
+              </span>
+              {currentDuelo.source}
+            </p>
           </div>
         </div>
       )}
@@ -286,7 +298,7 @@ export default function CriticalThinkingSection({ result }: Props) {
       {/* TAB 2: GREENWASHING */}
       {activeTab === "greenwashing" && (
         <div className="mt-5 space-y-3.5 animate-fade-in-up">
-          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
+          <div className="rounded-xl border border-forest-900 bg-[#241D15] p-4">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-gold-400" />
               O que é Greenwashing? (A Maquiagem Verde)
@@ -298,24 +310,30 @@ export default function CriticalThinkingSection({ result }: Props) {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
+            <div className="rounded-xl border border-forest-900 bg-[#241D15] p-4">
               <span className="rounded-full bg-gold-500/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[.15em] text-gold-300">
                 Fato Histórico 1
               </span>
               <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">A Invenção da \"Pegada Individual\"</h4>
               <p className="mt-1.5 text-xs text-stone-400 leading-relaxed">
-                Em 2004, a petroleira BP contratou uma das maiores agências de publicidade do mundo para criar a primeira \"calculadora de pegada de carbono\".
-                A intenção declarada era transferir a responsabilidade moral da queima de combustíveis fósseis para a rotina de cada cidadão.
+                Em 2004, a petroleira BP contratou uma das maiores agências de publicidade do mundo para popularizar a primeira \"calculadora de pegada de carbono\".
+                A intenção declarada era transferir parte da responsabilidade moral da queima de combustíveis fósseis para a rotina de cada cidadão.
+              </p>
+              <p className="mt-2 text-[10px] text-stone-500">
+                Fonte: Mark Kaufman, "The devious fossil fuel propaganda we all use", Mashable (2020).
               </p>
             </div>
 
-            <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4">
+            <div className="rounded-xl border border-forest-900 bg-[#241D15] p-4">
               <span className="rounded-full bg-rose-500/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[.15em] text-rose-300">
                 Fato Histórico 2
               </span>
               <h4 className="mt-2 text-xs sm:text-sm font-bold text-white">Obsolescência Programada</h4>
               <p className="mt-1.5 text-xs text-stone-400 leading-relaxed">
                 Desde o histórico \"Cartel Phoebus\" (que reduziu a vida útil das lâmpadas de 2.500 para 1.000 horas em 1924), indústrias projetam eletrônicos e roupas para estragarem rápido e garantirem vendas constantes.
+              </p>
+              <p className="mt-2 text-[10px] text-stone-500">
+                Fonte: Markus Krajewski, "The Great Lightbulb Conspiracy", IEEE Spectrum (2014).
               </p>
             </div>
           </div>
@@ -325,7 +343,7 @@ export default function CriticalThinkingSection({ result }: Props) {
       {/* TAB 3: RECURSOS FINITOS */}
       {activeTab === "recursos" && (
         <div className="mt-5 space-y-4 animate-fade-in-up">
-          <div className="rounded-xl border border-forest-900 bg-[#021f18] p-4 sm:p-5">
+          <div className="rounded-xl border border-forest-900 bg-[#241D15] p-4 sm:p-5">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold uppercase tracking-[.18em] text-rose-400">
                 Alerta Ecológico
@@ -341,7 +359,7 @@ export default function CriticalThinkingSection({ result }: Props) {
               Todos os anos, a humanidade consome em apenas <span className="text-white font-bold">7 a 8 meses</span> tudo o que o planeta consegue regenerar em 365 dias.
             </p>
 
-            <div className="mt-3.5 rounded-lg bg-[#063329] p-3 border border-forest-800">
+            <div className="mt-3.5 rounded-lg bg-[#3A2E22] p-3 border border-forest-800">
               <div className="flex justify-between text-[11px] font-bold text-stone-300">
                 <span>Janeiro</span>
                 <span className="text-rose-400">Agosto (Recursos esgotados)</span>
@@ -356,20 +374,26 @@ export default function CriticalThinkingSection({ result }: Props) {
                 <span className="text-rose-400 font-medium">● 40% Déficit ecológico</span>
               </div>
             </div>
+            <p className="mt-2 text-[10px] text-stone-500">
+              Fonte: Global Footprint Network, Relatório do Earth Overshoot Day.
+            </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
+            <div className="rounded-xl bg-[#241D15] border border-forest-900 p-3.5 text-center">
               <p className="text-lg font-black text-rose-400">1.75 Planetas</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Consumo da economia global hoje. Mas só temos 1 planeta.</p>
+              <p className="mt-1.5 text-[9px] text-stone-500">Global Footprint Network</p>
             </div>
-            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
+            <div className="rounded-xl bg-[#241D15] border border-forest-900 p-3.5 text-center">
               <p className="text-lg font-black text-gold-300">10% Mais Ricos</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Geram quase 50% de todas as emissões globais de carbono.</p>
+              <p className="mt-1.5 text-[9px] text-stone-500">Oxfam, Confronting Carbon Inequality</p>
             </div>
-            <div className="rounded-xl bg-[#021f18] border border-forest-900 p-3.5 text-center">
+            <div className="rounded-xl bg-[#241D15] border border-forest-900 p-3.5 text-center">
               <p className="text-lg font-black text-sky-400">Sul Global</p>
               <p className="mt-0.5 text-[11px] text-stone-400">Populações pobres sofrem mais com a seca e o calor extremos.</p>
+              <p className="mt-1.5 text-[9px] text-stone-500">IPCC, 6º Relatório de Avaliação (AR6)</p>
             </div>
           </div>
         </div>
@@ -386,7 +410,7 @@ export default function CriticalThinkingSection({ result }: Props) {
             {DEBATE_QUESTIONS.map((item) => (
               <div
                 key={item.number}
-                className="rounded-xl border border-forest-900 bg-[#021f18] p-3.5"
+                className="rounded-xl border border-forest-900 bg-[#241D15] p-3.5"
               >
                 <div className="flex items-center gap-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded bg-forest-900 text-gold-300 text-[10px] font-black border border-forest-800">
@@ -399,7 +423,7 @@ export default function CriticalThinkingSection({ result }: Props) {
                 <h4 className="mt-1.5 text-xs sm:text-sm font-bold text-white leading-snug">
                   {item.question}
                 </h4>
-                <p className="mt-1.5 rounded-lg bg-[#063329] p-2.5 text-[11px] text-stone-300 leading-relaxed border border-forest-800">
+                <p className="mt-1.5 rounded-lg bg-[#3A2E22] p-2.5 text-[11px] text-stone-300 leading-relaxed border border-forest-800">
                   <span className="font-semibold text-gold-200">Ponto de partida: </span>
                   {item.context}
                 </p>

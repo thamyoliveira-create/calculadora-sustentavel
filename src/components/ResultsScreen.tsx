@@ -127,9 +127,9 @@ export default function ResultsScreen({
   );
 
   return (
-    <div className="min-h-screen bg-[#F8F8F7] text-forest-950 pb-16">
+    <div className="bg-kraft min-h-screen text-forest-950 pb-16">
       {/* Quick nav */}
-      <div className="sticky top-0 z-30 border-b border-stone-200/80 bg-[#F8F8F7]/90 backdrop-blur-md">
+      <div className="sticky top-0 z-30 border-b border-forest-950/10 bg-[#F4E9D7]/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl gap-1.5 overflow-x-auto px-4 py-2.5 scrollbar-none">
           {navItems.map((item) => (
             <button
@@ -470,6 +470,11 @@ export default function ResultsScreen({
             Fazer Novamente com Outra Pessoa
           </button>
         </div>
+
+        {/* ASSINATURA */}
+        <p className="mt-10 text-center text-[11px] font-semibold uppercase tracking-[.12em] text-forest-950/50">
+          Criado por Prof.ª Tamiris
+        </p>
       </div>
 
       {showHowTo && <HowWeCalculateModal onClose={() => setShowHowTo(false)} />}

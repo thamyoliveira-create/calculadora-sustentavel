@@ -49,7 +49,7 @@ export default function FairResults({ onBack }: FairResultsProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8F8F7] text-forest-950">
+    <div className="bg-kraft min-h-screen text-forest-950">
       <div className="mx-auto max-w-3xl px-5 py-10 sm:py-14">
         <button onClick={onBack} className="btn-ghost mb-6 -ml-3">
           <ArrowLeft className="h-4 w-4" />
@@ -156,6 +156,10 @@ export default function FairResults({ onBack }: FairResultsProps) {
             )}
           </>
         )}
+
+        <p className="mt-10 text-center text-[11px] font-semibold uppercase tracking-[.12em] text-forest-950/50">
+          Criado por Prof.ª Tamiris
+        </p>
       </div>
     </div>
   );
